@@ -36,7 +36,7 @@ export const TechHighlights = () => {
       <HighlightItem 
         icon={<Fingerprint className="h-5 w-5 text-primary-foreground" />}
         title="Zero-Knowledge"
-        description="Groth16 ZK proofs for privacy"
+        description="ZK proofs for trustless privacy"
       />
     </div>
   );

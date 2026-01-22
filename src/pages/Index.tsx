@@ -43,7 +43,7 @@ const Index = () => {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight animate-fade-in" style={{
             animationDelay: '100ms'
           }}>
-              <span className="text-foreground">Unhackable Storage</span>
+              <span className="text-foreground">Breach-Proof Storage</span>
               <br />
               <span className="text-gradient">Through Incompleteness </span>
             </h1>

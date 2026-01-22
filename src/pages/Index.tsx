@@ -197,7 +197,7 @@ const Index = () => {
               </h2>
               <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
                 Join the waitlist for early access to BlockDrive. 
-                Storage that's unhackable by design, not just by encryption.
+                Storage that's mathematically breach-proof by design, not just by encryption.
               </p>
               <div className="flex justify-center">
                 <WaitlistForm />

@@ -1,6 +1,6 @@
 import { DemoLayout } from "../DemoLayout";
 import { WalletButton } from "../WalletButton";
-import { Shield, KeyRound, Server } from "lucide-react";
+import { Puzzle, Zap, Mail, Shield } from "lucide-react";
 
 interface StepWalletProps {
   onComplete: (address: string) => void;
@@ -10,31 +10,36 @@ interface StepWalletProps {
 export const StepWallet = ({ onComplete, walletAddress }: StepWalletProps) => {
   return (
     <DemoLayout
-      title="Connect Your Solana Wallet"
+      title="Create Your Account"
       description={
         <>
           <p>
-            BlockDrive uses your Solana wallet to derive unique encryption keys. 
-            This means <strong className="text-foreground">your encryption key never touches our servers</strong> — 
-            it's generated locally from your wallet signature.
+            BlockDrive creates an <strong className="text-foreground">invisible embedded Solana wallet</strong> when you sign up. 
+            No browser extensions, no seed phrases to manage — just seamless security with a Web2 feel.
           </p>
           <div className="space-y-3 pt-4">
             <div className="flex items-start gap-3">
+              <Puzzle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <p className="text-sm">
+                <strong className="text-foreground">No Extensions Required:</strong> No Phantom, Solflare, or browser plugins needed
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
               <Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
               <p className="text-sm">
-                <strong className="text-foreground">Zero-Knowledge:</strong> We never see your encryption key
+                <strong className="text-foreground">Automatic Key Generation:</strong> Encryption keys derived from your embedded wallet
               </p>
             </div>
             <div className="flex items-start gap-3">
-              <KeyRound className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <Zap className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
               <p className="text-sm">
-                <strong className="text-foreground">Wallet-Derived:</strong> Keys generated from your signature
+                <strong className="text-foreground">Gasless Experience:</strong> Solana interactions happen invisibly with no fees
               </p>
             </div>
             <div className="flex items-start gap-3">
-              <Server className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
               <p className="text-sm">
-                <strong className="text-foreground">Client-Side:</strong> All encryption happens in your browser
+                <strong className="text-foreground">Web2 Simplicity:</strong> Sign up with email — blockchain complexity handled behind the scenes
               </p>
             </div>
           </div>
@@ -44,10 +49,10 @@ export const StepWallet = ({ onComplete, walletAddress }: StepWalletProps) => {
       <div className="rounded-2xl bg-card/30 border border-border/50 backdrop-blur-sm p-8 space-y-6">
         <div className="text-center space-y-2">
           <h3 className="text-lg font-display font-semibold text-foreground">
-            Simulate Wallet Connection
+            Simulate Account Creation
           </h3>
           <p className="text-sm text-muted-foreground">
-            Click to simulate connecting a Solana wallet
+            Click to create an account with an embedded wallet
           </p>
         </div>
 
@@ -56,28 +61,6 @@ export const StepWallet = ({ onComplete, walletAddress }: StepWalletProps) => {
           isConnected={!!walletAddress}
           address={walletAddress}
         />
-
-        {/* Wallet options (visual only) */}
-        <div className="flex justify-center gap-4 pt-4">
-          <div className="flex flex-col items-center gap-1 opacity-50">
-            <div className="w-10 h-10 rounded-lg bg-secondary/50 flex items-center justify-center">
-              <span className="text-lg">👻</span>
-            </div>
-            <span className="text-xs text-muted-foreground">Phantom</span>
-          </div>
-          <div className="flex flex-col items-center gap-1 opacity-50">
-            <div className="w-10 h-10 rounded-lg bg-secondary/50 flex items-center justify-center">
-              <span className="text-lg">🔥</span>
-            </div>
-            <span className="text-xs text-muted-foreground">Solflare</span>
-          </div>
-          <div className="flex flex-col items-center gap-1 opacity-50">
-            <div className="w-10 h-10 rounded-lg bg-secondary/50 flex items-center justify-center">
-              <span className="text-lg">🎒</span>
-            </div>
-            <span className="text-xs text-muted-foreground">Backpack</span>
-          </div>
-        </div>
       </div>
     </DemoLayout>
   );

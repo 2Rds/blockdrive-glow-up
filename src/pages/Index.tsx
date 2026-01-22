@@ -126,7 +126,7 @@ const Index = () => {
               </div>
               <div>
                 <h3 className="text-lg font-display font-semibold text-foreground mb-1">Distributed Storage</h3>
-                <p className="text-muted-foreground">Encrypted bulk data is stored on Cloudflare R2 (S3-compatible) for high-performance global access. Critical bytes are stored separately on Arweave for permanence, with access controls verified on Solana.</p>
+                <p className="text-muted-foreground">Bulk encrypted data is stored on Filebase's enterprise-grade IPFS infrastructure. The critical 16 bytes are stored separately on Cloudflare R2, protected by Groth16 ZK proofs and Solana-verified access controls.</p>
               </div>
             </div>
             

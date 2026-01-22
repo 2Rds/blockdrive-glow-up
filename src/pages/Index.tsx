@@ -133,7 +133,7 @@ const Index = () => {
               </div>
               <div>
                 <h3 className="text-lg font-display font-semibold text-foreground mb-1">Instant Revoke</h3>
-                <p className="text-muted-foreground">Delete the critical bytes at any time. Even if someone has the main encrypted file, it's permanently unreadable — no decryption keys needed, just mathematical impossibility.</p>
+                <p className="text-muted-foreground">Revoke shared access instantly by deleting recipient-specific critical bytes. Your original access remains intact, while shared files become permanently unreadable to recipients - no key rotation needed.</p>
               </div>
             </div>
           </div>

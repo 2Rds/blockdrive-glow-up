@@ -133,7 +133,7 @@ const Index = () => {
               </div>
               <div>
                 <h3 className="text-lg font-display font-semibold text-foreground mb-1">Instant Revoke</h3>
-                <p className="text-muted-foreground">Delete the critical bytes at any time. Even if someone has the main encrypted file, it's permanently unreadable — no decryption keys needed, just mathematical impossibility.</p>
+                <p className="text-muted-foreground">Revoke shared access instantly by deleting recipient-specific critical bytes. Your original access remains intact, while shared files become permanently unreadable to recipients — no key rotation or re-encryption needed.</p>
               </div>
             </div>
           </div>
@@ -156,7 +156,7 @@ const Index = () => {
             <FeatureCard icon={FileKey} title="Programmed Incompleteness" description="Files are mathematically incomplete without critical bytes. Even breached data remains unreadable forever." delay={0} />
             <FeatureCard icon={Wallet} title="Embedded Wallet Authentication" description="Seamless sign-in with no extensions or gas fees. Your wallet is built-in, invisible, and always ready." delay={100} />
             <FeatureCard icon={Shield} title="Privacy Proofs" description="Prove you own your files without revealing any contents. Complete privacy by design." delay={200} />
-            <FeatureCard icon={Zap} title="Instant Revoke" description="Delete critical bytes anytime to permanently render shared files unreadable. No key rotation needed." delay={300} />
+            <FeatureCard icon={Zap} title="Instant Revoke" description="Revoke recipient access instantly while retaining your own. Shared files become permanently unreadable — no key rotation or re-encryption required." delay={300} />
             <FeatureCard icon={KeyRound} title="Wallet-Derived Keys" description="Encryption keys derived from your wallet signature. Your data never touches servers unencrypted." delay={400} />
             <FeatureCard icon={Unplug} title="On-Chain Audit Trail" description="Immutable file registry on Solana. Every access and revocation is permanently recorded." delay={500} />
           </div>

@@ -43,7 +43,7 @@ const Index = () => {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight animate-fade-in" style={{
             animationDelay: '100ms'
           }}>
-              <span className="text-foreground">Breach-Proof Storage</span>
+              <span className="text-foreground">Unhackable Storage</span>
               <br />
               <span className="text-gradient">Through Incompleteness</span>
             </h1>
@@ -133,7 +133,7 @@ const Index = () => {
               </div>
               <div>
                 <h3 className="text-lg font-display font-semibold text-foreground mb-1">Instant Revoke</h3>
-                <p className="text-muted-foreground">Revoke shared access instantly by deleting recipient-specific critical bytes. Your original access remains intact, while shared files become permanently unreadable to recipients — no key rotation or re-encryption needed.</p>
+                <p className="text-muted-foreground">Delete the critical bytes at any time. Even if someone has the main encrypted file, it's permanently unreadable — no decryption keys needed, just mathematical impossibility.</p>
               </div>
             </div>
           </div>
@@ -154,9 +154,9 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <FeatureCard icon={FileKey} title="Programmed Incompleteness" description="Files are mathematically incomplete without critical bytes. Even breached data remains unreadable forever." delay={0} />
-            <FeatureCard icon={Wallet} title="Embedded Wallet Authentication" description="Seamless sign-in with no extensions or gas fees. Your wallet is built-in, invisible, and always ready." delay={100} />
+            <FeatureCard icon={Wallet} title="Solana Wallet Auth" description="Connect securely with your Solana wallet. Your keys, your data, your control." delay={100} />
             <FeatureCard icon={Shield} title="Privacy Proofs" description="Prove you own your files without revealing any contents. Complete privacy by design." delay={200} />
-            <FeatureCard icon={Zap} title="Instant Revoke" description="Revoke recipient access instantly while retaining your own. Shared files become permanently unreadable — no key rotation or re-encryption required." delay={300} />
+            <FeatureCard icon={Zap} title="Instant Revoke" description="Delete critical bytes anytime to permanently render shared files unreadable. No key rotation needed." delay={300} />
             <FeatureCard icon={KeyRound} title="Wallet-Derived Keys" description="Encryption keys derived from your wallet signature. Your data never touches servers unencrypted." delay={400} />
             <FeatureCard icon={Unplug} title="On-Chain Audit Trail" description="Immutable file registry on Solana. Every access and revocation is permanently recorded." delay={500} />
           </div>
@@ -176,7 +176,7 @@ const Index = () => {
               </h2>
               <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
                 Join the waitlist for early access to BlockDrive. 
-                Storage that's breach-proof by design, not just by encryption.
+                Storage that's unhackable by design, not just by encryption.
               </p>
               <div className="flex justify-center">
                 <WaitlistForm />
@@ -192,6 +192,14 @@ const Index = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <Logo />
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
+              <a href="https://blockdrive.co" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                © 2026 BlockDrive
+              </a>
+              <span>•</span>
+              <a href="https://github.com/2Rds/block-drive-vault" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                GitHub
+              </a>
+              <span>•</span>
               <span>© 2024 BlockDrive</span>
             </div>
           </div>

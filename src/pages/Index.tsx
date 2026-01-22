@@ -3,20 +3,9 @@ import { Logo } from "@/components/Logo";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { FeatureCard } from "@/components/FeatureCard";
 import { TechHighlights } from "@/components/StatsCounter";
-import { 
-  Shield, 
-  Zap, 
-  Globe, 
-  Lock, 
-  KeyRound,
-  Wallet,
-  FileKey,
-  Unplug
-} from "lucide-react";
-
+import { Shield, Zap, Globe, Lock, KeyRound, Wallet, FileKey, Unplug } from "lucide-react";
 const Index = () => {
-  return (
-    <div className="min-h-screen relative">
+  return <div className="min-h-screen relative">
       <AnimatedBackground />
       
       {/* Header */}
@@ -51,26 +40,34 @@ const Index = () => {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight animate-fade-in" style={{ animationDelay: '100ms' }}>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight animate-fade-in" style={{
+            animationDelay: '100ms'
+          }}>
               <span className="text-foreground">Unhackable Storage</span>
               <br />
               <span className="text-gradient">Through Incompleteness</span>
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '200ms' }}>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{
+            animationDelay: '200ms'
+          }}>
               BlockDrive's "Programmed Incompleteness" architecture splits your encrypted files, 
               storing critical bytes separately. Even if breached, your data remains 
               permanently unreadable — with instant revoke at any time.
             </p>
 
             {/* Waitlist Form */}
-            <div className="flex justify-center pt-4 animate-fade-in" style={{ animationDelay: '300ms' }}>
+            <div className="flex justify-center pt-4 animate-fade-in" style={{
+            animationDelay: '300ms'
+          }}>
               <WaitlistForm />
             </div>
 
             {/* Trust badges */}
-            <div className="flex flex-wrap justify-center gap-4 pt-4 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: '400ms' }}>
+            <div className="flex flex-wrap justify-center gap-4 pt-4 text-sm text-muted-foreground animate-fade-in" style={{
+            animationDelay: '400ms'
+          }}>
               <div className="flex items-center gap-2">
                 <Shield className="h-4 w-4 text-primary" />
                 <span>Zero-Knowledge Proofs</span>
@@ -126,7 +123,7 @@ const Index = () => {
               </div>
               <div>
                 <h3 className="text-lg font-display font-semibold text-foreground mb-1">Distributed Storage</h3>
-                <p className="text-muted-foreground">Bulk encrypted data is stored on Filebase's enterprise-grade IPFS infrastructure. The critical 16 bytes are stored separately on Cloudflare R2, protected by Groth16 ZK proofs and Solana-verified access controls.</p>
+                <p className="text-muted-foreground">Bulk encrypted data is stored on Filebase's enterprise-grade IPFS infrastructure. The critical 16 bytes are stored separately on Cloudflare R2, protected by ZK proofs and Solana-verified access controls.</p>
               </div>
             </div>
             
@@ -156,42 +153,12 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <FeatureCard
-              icon={FileKey}
-              title="Programmed Incompleteness"
-              description="Files are mathematically incomplete without critical bytes. Even breached data remains unreadable forever."
-              delay={0}
-            />
-            <FeatureCard
-              icon={Wallet}
-              title="Multi-Chain Authentication"
-              description="Dual-chain verification with .sol and .base domains. Connect via Solana, Ethereum, or Base wallets."
-              delay={100}
-            />
-            <FeatureCard
-              icon={Shield}
-              title="Zero-Knowledge Proofs"
-              description="Groth16 ZK proofs let you prove ownership of critical bytes without ever revealing them."
-              delay={200}
-            />
-            <FeatureCard
-              icon={Zap}
-              title="Instant Revoke"
-              description="Delete critical bytes anytime to permanently render shared files unreadable. No key rotation needed."
-              delay={300}
-            />
-            <FeatureCard
-              icon={KeyRound}
-              title="Wallet-Derived Keys"
-              description="Encryption keys derived from your wallet signature. Your data never touches servers unencrypted."
-              delay={400}
-            />
-            <FeatureCard
-              icon={Unplug}
-              title="On-Chain Audit Trail"
-              description="Immutable file registry on Solana. Every access and revocation is permanently recorded."
-              delay={500}
-            />
+            <FeatureCard icon={FileKey} title="Programmed Incompleteness" description="Files are mathematically incomplete without critical bytes. Even breached data remains unreadable forever." delay={0} />
+            <FeatureCard icon={Wallet} title="Multi-Chain Authentication" description="Dual-chain verification with .sol and .base domains. Connect via Solana, Ethereum, or Base wallets." delay={100} />
+            <FeatureCard icon={Shield} title="Zero-Knowledge Proofs" description="Groth16 ZK proofs let you prove ownership of critical bytes without ever revealing them." delay={200} />
+            <FeatureCard icon={Zap} title="Instant Revoke" description="Delete critical bytes anytime to permanently render shared files unreadable. No key rotation needed." delay={300} />
+            <FeatureCard icon={KeyRound} title="Wallet-Derived Keys" description="Encryption keys derived from your wallet signature. Your data never touches servers unencrypted." delay={400} />
+            <FeatureCard icon={Unplug} title="On-Chain Audit Trail" description="Immutable file registry on Solana. Every access and revocation is permanently recorded." delay={500} />
           </div>
         </div>
       </section>
@@ -238,8 +205,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;

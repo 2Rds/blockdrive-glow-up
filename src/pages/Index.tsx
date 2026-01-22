@@ -154,7 +154,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <FeatureCard icon={FileKey} title="Programmed Incompleteness" description="Files are mathematically incomplete without critical bytes. Even breached data remains unreadable forever." delay={0} />
-            <FeatureCard icon={Wallet} title="Gasless Embedded Wallet" description="Seamless sign-in with no extensions or gas fees. Your wallet is built-in, invisible, and always ready." delay={100} />
+            <FeatureCard icon={Wallet} title="Embedded Wallet Authentication" description="Seamless sign-in with no extensions or gas fees. Your wallet is built-in, invisible, and always ready." delay={100} />
             <FeatureCard icon={Shield} title="Privacy Proofs" description="Prove you own your files without revealing any contents. Complete privacy by design." delay={200} />
             <FeatureCard icon={Zap} title="Instant Revoke" description="Delete critical bytes anytime to permanently render shared files unreadable. No key rotation needed." delay={300} />
             <FeatureCard icon={KeyRound} title="Wallet-Derived Keys" description="Encryption keys derived from your wallet signature. Your data never touches servers unencrypted." delay={400} />

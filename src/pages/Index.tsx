@@ -63,16 +63,10 @@ const Index = () => {
             </p>
 
             {/* Waitlist Form */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fade-in" style={{
+            <div className="flex justify-center pt-4 animate-fade-in" style={{
             animationDelay: '300ms'
           }}>
               <WaitlistForm />
-              <Link to="/demo">
-                <Button variant="outline" className="gap-2">
-                  <Play className="h-4 w-4" />
-                  Try Interactive Demo
-                </Button>
-              </Link>
             </div>
 
             {/* Trust badges */}
@@ -91,6 +85,18 @@ const Index = () => {
                 <Globe className="h-4 w-4 text-primary" />
                 <span>Built on Solana</span>
               </div>
+            </div>
+
+            {/* Demo Button */}
+            <div className="flex justify-center pt-2 animate-fade-in" style={{
+            animationDelay: '500ms'
+          }}>
+              <Link to="/demo">
+                <Button variant="outline" className="gap-2">
+                  <Play className="h-4 w-4" />
+                  Try Interactive Demo
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

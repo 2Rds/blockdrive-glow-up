@@ -1,1 +1,7 @@
 project_id = "qznnjkalryjkmfjcrnav"
+
+[functions.notify-slack]
+verify_jwt = false
+
+[functions.sync-to-notion]
+verify_jwt = false

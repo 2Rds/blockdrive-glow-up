@@ -192,14 +192,6 @@ const Index = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <Logo />
             <div className="flex items-center gap-6 text-sm text-muted-foreground">
-              <a href="https://blockdrive.co" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                Website
-              </a>
-              <span>•</span>
-              <a href="https://github.com/2Rds/block-drive-vault" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                GitHub
-              </a>
-              <span>•</span>
               <span>© 2024 BlockDrive</span>
             </div>
           </div>

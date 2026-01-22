@@ -88,13 +88,17 @@ const Index = () => {
             </div>
 
             {/* Demo Button */}
-            <div className="flex justify-center pt-2 animate-fade-in" style={{
+            <div className="flex justify-center pt-6 animate-fade-in" style={{
             animationDelay: '500ms'
           }}>
               <Link to="/demo">
-                <Button variant="outline" className="gap-2">
-                  <Play className="h-4 w-4" />
-                  Try Interactive Demo
+                <Button 
+                  variant="outline" 
+                  className="group relative gap-2 px-6 py-5 text-sm font-medium border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
+                >
+                  <span className="absolute inset-0 rounded-md bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <Play className="h-4 w-4 text-primary transition-transform duration-300 group-hover:scale-110" />
+                  <span className="relative">Try Interactive Demo</span>
                 </Button>
               </Link>
             </div>
@@ -103,7 +107,7 @@ const Index = () => {
       </section>
 
       {/* Tech Highlights Section */}
-      <section className="py-12 px-6">
+      <section className="py-16 px-6">
         <div className="container mx-auto max-w-4xl">
           <div className="rounded-2xl bg-card/30 border border-border/50 backdrop-blur-sm p-8">
             <TechHighlights />

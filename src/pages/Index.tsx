@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Logo } from "@/components/Logo";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { FeatureCard } from "@/components/FeatureCard";
 import { TechHighlights } from "@/components/StatsCounter";
-import { Shield, Zap, Globe, Lock, KeyRound, Wallet, FileKey, Unplug } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Shield, Zap, Globe, Lock, KeyRound, Wallet, FileKey, Unplug, Play } from "lucide-react";
 const Index = () => {
   return <div className="min-h-screen relative">
       <AnimatedBackground />
@@ -22,6 +24,9 @@ const Index = () => {
             <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               How It Works
             </a>
+            <Link to="/demo" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+              Try Demo
+            </Link>
           </nav>
         </div>
       </header>
@@ -58,10 +63,16 @@ const Index = () => {
             </p>
 
             {/* Waitlist Form */}
-            <div className="flex justify-center pt-4 animate-fade-in" style={{
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fade-in" style={{
             animationDelay: '300ms'
           }}>
               <WaitlistForm />
+              <Link to="/demo">
+                <Button variant="outline" className="gap-2">
+                  <Play className="h-4 w-4" />
+                  Try Interactive Demo
+                </Button>
+              </Link>
             </div>
 
             {/* Trust badges */}
@@ -154,9 +165,9 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <FeatureCard icon={FileKey} title="Programmed Incompleteness" description="Files are mathematically incomplete without critical bytes. Even breached data remains unreadable forever." delay={0} />
-            <FeatureCard icon={Wallet} title="Solana Wallet Auth" description="Connect securely with your Solana wallet. Your keys, your data, your control." delay={100} />
+            <FeatureCard icon={Wallet} title="Embedded Wallet Authentication" description="Seamless sign-in with no extensions or gas fees. Your wallet is built-in, invisible, and always ready." delay={100} />
             <FeatureCard icon={Shield} title="Privacy Proofs" description="Prove you own your files without revealing any contents. Complete privacy by design." delay={200} />
-            <FeatureCard icon={Zap} title="Instant Revoke" description="Delete critical bytes anytime to permanently render shared files unreadable. No key rotation needed." delay={300} />
+            <FeatureCard icon={Zap} title="Instant Revoke" description="Revoke recipient access instantly while retaining your own. Shared files become permanently unreadable to others - no key rotation or re-encryption required." delay={300} />
             <FeatureCard icon={KeyRound} title="Wallet-Derived Keys" description="Encryption keys derived from your wallet signature. Your data never touches servers unencrypted." delay={400} />
             <FeatureCard icon={Unplug} title="On-Chain Audit Trail" description="Immutable file registry on Solana. Every access and revocation is permanently recorded." delay={500} />
           </div>

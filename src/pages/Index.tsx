@@ -126,7 +126,7 @@ const Index = () => {
               </div>
               <div>
                 <h3 className="text-lg font-display font-semibold text-foreground mb-1">Distributed Storage</h3>
-                <p className="text-muted-foreground">The incomplete file goes to IPFS via Filebase with S3 and Arweave fallbacks. Critical bytes are stored separately with blockchain-verified access controls on Solana.</p>
+                <p className="text-muted-foreground">Encrypted bulk data is stored on Cloudflare R2 (S3-compatible) for high-performance global access. Critical bytes are stored separately on Arweave for permanence, with access controls verified on Solana.</p>
               </div>
             </div>
             

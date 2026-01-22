@@ -3,18 +3,29 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 import { ArrowRight, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useABTest } from "@/contexts/ABTestContext";
+import { z } from "zod";
 
-export const WaitlistForm = () => {
+const emailSchema = z.string().trim().email({ message: "Please enter a valid email address" }).max(255);
+
+interface WaitlistFormProps {
+  source?: string;
+}
+
+export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { variant } = useABTest();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!email) {
+    const validation = emailSchema.safeParse(email);
+    if (!validation.success) {
       toast({
-        title: "Email required",
-        description: "Please enter your email address.",
+        title: "Invalid email",
+        description: validation.error.errors[0]?.message || "Please enter a valid email address.",
         variant: "destructive",
       });
       return;
@@ -22,16 +33,41 @@ export const WaitlistForm = () => {
 
     setIsLoading(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "You're on the list! 🎉",
-      description: "We'll notify you when BlockDrive launches.",
-    });
-    
-    setEmail("");
-    setIsLoading(false);
+    try {
+      const { error } = await supabase.from("waitlist").insert({
+        email: validation.data,
+        ab_variant: variant,
+        source,
+        referrer: document.referrer || null,
+      });
+
+      if (error) {
+        // Check for duplicate email
+        if (error.code === "23505") {
+          toast({
+            title: "Already on the list!",
+            description: "This email is already registered for the waitlist.",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({
+          title: "You're on the list! 🎉",
+          description: "We'll notify you when BlockDrive launches.",
+        });
+        setEmail("");
+      }
+    } catch (error) {
+      console.error("Waitlist signup error:", error);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

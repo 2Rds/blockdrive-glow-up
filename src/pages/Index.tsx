@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Logo } from "@/components/Logo";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { FeatureCard } from "@/components/FeatureCard";
 import { TechHighlights } from "@/components/StatsCounter";
-import { Shield, Zap, Globe, Lock, KeyRound, Wallet, FileKey, Unplug } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Shield, Zap, Globe, Lock, KeyRound, Wallet, FileKey, Unplug, Play } from "lucide-react";
 const Index = () => {
   return <div className="min-h-screen relative">
       <AnimatedBackground />
@@ -22,6 +24,9 @@ const Index = () => {
             <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               How It Works
             </a>
+            <Link to="/demo" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
+              Try Demo
+            </Link>
           </nav>
         </div>
       </header>
@@ -81,12 +86,28 @@ const Index = () => {
                 <span>Built on Solana</span>
               </div>
             </div>
+
+            {/* Demo Button */}
+            <div className="flex justify-center pt-6 animate-fade-in" style={{
+            animationDelay: '500ms'
+          }}>
+              <Link to="/demo">
+                <Button 
+                  variant="outline" 
+                  className="group relative gap-2 px-6 py-5 text-sm font-medium border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
+                >
+                  <span className="absolute inset-0 rounded-md bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <Play className="h-4 w-4 text-primary transition-transform duration-300 group-hover:scale-110" />
+                  <span className="relative">Try Interactive Demo</span>
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Tech Highlights Section */}
-      <section className="py-12 px-6">
+      <section className="py-16 px-6">
         <div className="container mx-auto max-w-4xl">
           <div className="rounded-2xl bg-card/30 border border-border/50 backdrop-blur-sm p-8">
             <TechHighlights />
@@ -154,9 +175,9 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <FeatureCard icon={FileKey} title="Programmed Incompleteness" description="Files are mathematically incomplete without critical bytes. Even breached data remains unreadable forever." delay={0} />
-            <FeatureCard icon={Wallet} title="Solana Wallet Auth" description="Connect securely with your Solana wallet. Your keys, your data, your control." delay={100} />
+            <FeatureCard icon={Wallet} title="Embedded Wallet Authentication" description="Seamless sign-in with no extensions or gas fees. Your wallet is built-in, invisible, and always ready." delay={100} />
             <FeatureCard icon={Shield} title="Privacy Proofs" description="Prove you own your files without revealing any contents. Complete privacy by design." delay={200} />
-            <FeatureCard icon={Zap} title="Instant Revoke" description="Delete critical bytes anytime to permanently render shared files unreadable. No key rotation needed." delay={300} />
+            <FeatureCard icon={Zap} title="Instant Revoke" description="Revoke recipient access instantly while retaining your own. Shared files become permanently unreadable to others - no key rotation or re-encryption required." delay={300} />
             <FeatureCard icon={KeyRound} title="Wallet-Derived Keys" description="Encryption keys derived from your wallet signature. Your data never touches servers unencrypted." delay={400} />
             <FeatureCard icon={Unplug} title="On-Chain Audit Trail" description="Immutable file registry on Solana. Every access and revocation is permanently recorded." delay={500} />
           </div>
@@ -191,17 +212,9 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <Logo />
-            <div className="flex items-center gap-6 text-sm text-muted-foreground">
-              <a href="https://blockdrive.co" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                © 2026 BlockDrive
-              </a>
-              <span>Join the waitlist for early access to BlockDrive. Storage that's mathematically breach-proof by design, not just by encryption.</span>
-              <a href="https://github.com/2Rds/block-drive-vault" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
-                GitHub
-              </a>
-              <span>•</span>
-              <span>© 2024 BlockDrive</span>
-            </div>
+            <span className="text-sm text-muted-foreground">
+              © 2025 BlockDrive
+            </span>
           </div>
         </div>
       </footer>

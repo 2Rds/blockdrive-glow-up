@@ -1,6 +1,6 @@
 import { DemoLayout } from "../DemoLayout";
 import { WalletButton } from "../WalletButton";
-import { Puzzle, Zap, Mail, Shield } from "lucide-react";
+import { Globe, Zap, Link2, Shield } from "lucide-react";
 
 interface StepWalletProps {
   onComplete: (address: string) => void;
@@ -10,36 +10,36 @@ interface StepWalletProps {
 export const StepWallet = ({ onComplete, walletAddress }: StepWalletProps) => {
   return (
     <DemoLayout
-      title="Create Your Account"
+      title="Choose Your Username"
       description={
         <>
           <p>
-            BlockDrive creates an <strong className="text-foreground">invisible embedded Solana wallet</strong> when you sign up. 
-            No browser extensions, no seed phrases to manage — just seamless security with a Web2 feel.
+            When you sign up, you choose a <strong className="text-foreground">username</strong> and BlockDrive automatically 
+            registers your <strong className="text-primary">username.blockdrive.sol</strong> subdomain on the Solana Name Service.
           </p>
           <div className="space-y-3 pt-4">
             <div className="flex items-start gap-3">
-              <Puzzle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <Globe className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
               <p className="text-sm">
-                <strong className="text-foreground">No Extensions Required:</strong> No Phantom, Solflare, or browser plugins needed
+                <strong className="text-foreground">Your Web3 Identity:</strong> Your username becomes your permanent, human-readable address on Solana
               </p>
             </div>
             <div className="flex items-start gap-3">
               <Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
               <p className="text-sm">
-                <strong className="text-foreground">Automatic Key Generation:</strong> Encryption keys derived from your embedded wallet
+                <strong className="text-foreground">Embedded Wallet Created:</strong> An invisible Solana wallet is generated — no extensions or seed phrases
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <Link2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <p className="text-sm">
+                <strong className="text-foreground">Automatic Reverse Resolution:</strong> Your subdomain links to your wallet, so others can find you by name
               </p>
             </div>
             <div className="flex items-start gap-3">
               <Zap className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
               <p className="text-sm">
-                <strong className="text-foreground">Gasless Experience:</strong> Solana interactions happen invisibly with no fees
-              </p>
-            </div>
-            <div className="flex items-start gap-3">
-              <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-              <p className="text-sm">
-                <strong className="text-foreground">Web2 Simplicity:</strong> Sign up with email — blockchain complexity handled behind the scenes
+                <strong className="text-foreground">Gasless Registration:</strong> BlockDrive covers all on-chain costs — you just pick a username
               </p>
             </div>
           </div>
@@ -52,7 +52,7 @@ export const StepWallet = ({ onComplete, walletAddress }: StepWalletProps) => {
             Simulate Account Creation
           </h3>
           <p className="text-sm text-muted-foreground">
-            Click to create an account with an embedded wallet
+            Enter a username to create your blockdrive.sol identity
           </p>
         </div>
 

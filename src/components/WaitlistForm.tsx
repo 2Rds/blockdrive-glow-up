@@ -52,17 +52,25 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
 
   const triggerNotifications = async (data: Record<string, unknown>) => {
     const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
     
     // Fire-and-forget notifications - don't block UI
+    // Include apikey header for authentication
     Promise.all([
       fetch(`${supabaseUrl}/functions/v1/notify-slack`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "apikey": anonKey,
+        },
         body: JSON.stringify(data),
       }).catch(err => console.error("Slack notification failed:", err)),
       fetch(`${supabaseUrl}/functions/v1/sync-to-notion`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "apikey": anonKey,
+        },
         body: JSON.stringify(data),
       }).catch(err => console.error("Notion sync failed:", err)),
     ]);

@@ -43,7 +43,7 @@ const Index = () => {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight animate-fade-in" style={{
             animationDelay: '100ms'
           }}>
-              <span className="text-foreground">Unhackable Storage</span>
+              <span className="text-foreground">Breach-Proof Storage</span>
               <br />
               <span className="text-gradient">Through Incompleteness</span>
             </h1>
@@ -176,7 +176,7 @@ const Index = () => {
               </h2>
               <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
                 Join the waitlist for early access to BlockDrive. 
-                Storage that's unhackable by design, not just by encryption.
+                Storage that's breach-proof by design, not just by encryption.
               </p>
               <div className="flex justify-center">
                 <WaitlistForm />

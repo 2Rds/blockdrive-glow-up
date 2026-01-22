@@ -70,15 +70,15 @@ const Index = () => {
           }}>
               <div className="flex items-center gap-2">
                 <Shield className="h-4 w-4 text-primary" />
-                <span>Zero-Knowledge Proofs</span>
+                <span>Privacy-First Design</span>
               </div>
               <div className="flex items-center gap-2">
                 <Lock className="h-4 w-4 text-primary" />
-                <span>AES-256-GCM Encryption</span>
+                <span>Military-Grade Encryption</span>
               </div>
               <div className="flex items-center gap-2">
                 <Globe className="h-4 w-4 text-primary" />
-                <span>Solana + EVM Chains</span>
+                <span>Built on Solana</span>
               </div>
             </div>
           </div>
@@ -113,7 +113,7 @@ const Index = () => {
               </div>
               <div>
                 <h3 className="text-lg font-display font-semibold text-foreground mb-1">Encrypt & Split</h3>
-                <p className="text-muted-foreground">Your file is encrypted with AES-256-GCM using a key derived from your wallet. Critical bytes are extracted and stored separately — the main file is now mathematically incomplete.</p>
+                <p className="text-muted-foreground">Your file is encrypted using military-grade security with a key derived from your wallet. Critical bytes are extracted and stored separately — the main file is now mathematically incomplete.</p>
               </div>
             </div>
             
@@ -123,7 +123,7 @@ const Index = () => {
               </div>
               <div>
                 <h3 className="text-lg font-display font-semibold text-foreground mb-1">Distributed Storage</h3>
-                <p className="text-muted-foreground">Bulk encrypted data is stored on Filebase's enterprise-grade IPFS infrastructure. The critical 16 bytes are stored separately on Cloudflare R2, protected by ZK proofs and Solana-verified access controls.</p>
+                <p className="text-muted-foreground">Bulk encrypted data is stored on Filebase's enterprise-grade IPFS infrastructure. The critical 16 bytes are stored separately on Cloudflare R2, protected by privacy proofs and Solana-verified access controls.</p>
               </div>
             </div>
             
@@ -154,8 +154,8 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <FeatureCard icon={FileKey} title="Programmed Incompleteness" description="Files are mathematically incomplete without critical bytes. Even breached data remains unreadable forever." delay={0} />
-            <FeatureCard icon={Wallet} title="Multi-Chain Authentication" description="Dual-chain verification with .sol and .base domains. Connect via Solana, Ethereum, or Base wallets." delay={100} />
-            <FeatureCard icon={Shield} title="Zero-Knowledge Proofs" description="Groth16 ZK proofs let you prove ownership of critical bytes without ever revealing them." delay={200} />
+            <FeatureCard icon={Wallet} title="Solana Wallet Auth" description="Connect securely with your Solana wallet. Your keys, your data, your control." delay={100} />
+            <FeatureCard icon={Shield} title="Privacy Proofs" description="Prove you own your files without revealing any contents. Complete privacy by design." delay={200} />
             <FeatureCard icon={Zap} title="Instant Revoke" description="Delete critical bytes anytime to permanently render shared files unreadable. No key rotation needed." delay={300} />
             <FeatureCard icon={KeyRound} title="Wallet-Derived Keys" description="Encryption keys derived from your wallet signature. Your data never touches servers unencrypted." delay={400} />
             <FeatureCard icon={Unplug} title="On-Chain Audit Trail" description="Immutable file registry on Solana. Every access and revocation is permanently recorded." delay={500} />

@@ -25,13 +25,13 @@ export const TechHighlights = () => {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 py-8">
       <HighlightItem 
         icon={<Shield className="h-5 w-5 text-primary-foreground" />}
-        title="AES-256-GCM"
-        description="Military-grade encryption with wallet-derived keys"
+        title="Military-Grade Encryption"
+        description="Bank-level security with wallet-derived keys"
       />
       <HighlightItem 
         icon={<Layers className="h-5 w-5 text-primary-foreground" />}
-        title="Multi-Chain"
-        description="Solana, Ethereum & Base support"
+        title="Solana Powered"
+        description="Fast, low-cost blockchain verification"
       />
       <HighlightItem 
         icon={<Fingerprint className="h-5 w-5 text-primary-foreground" />}

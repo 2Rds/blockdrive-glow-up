@@ -22,6 +22,18 @@ serve(async (req) => {
   }
 
   try {
+    // Validate authorization - require apikey header matching anon key
+    const apiKey = req.headers.get('apikey');
+    const expectedKey = Deno.env.get("SUPABASE_ANON_KEY");
+    
+    if (!apiKey || apiKey !== expectedKey) {
+      console.error("Unauthorized request - invalid or missing apikey");
+      return new Response(
+        JSON.stringify({ success: false, error: "Unauthorized" }),
+        { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     const SLACK_WEBHOOK_URL = Deno.env.get("SLACK_WEBHOOK_URL");
     if (!SLACK_WEBHOOK_URL) {
       throw new Error("SLACK_WEBHOOK_URL is not configured");

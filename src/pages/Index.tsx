@@ -156,7 +156,7 @@ const Index = () => {
             <FeatureCard icon={FileKey} title="Programmed Incompleteness" description="Files are mathematically incomplete without critical bytes. Even breached data remains unreadable forever." delay={0} />
             <FeatureCard icon={Wallet} title="Solana Wallet Auth" description="Connect securely with your Solana wallet. Your keys, your data, your control." delay={100} />
             <FeatureCard icon={Shield} title="Privacy Proofs" description="Prove you own your files without revealing any contents. Complete privacy by design." delay={200} />
-            <FeatureCard icon={Zap} title="Instant Revoke" description="Delete critical bytes anytime to permanently render shared files unreadable. No key rotation needed." delay={300} />
+            <FeatureCard icon={Zap} title="Instant Revoke" description="Revoke recipient access instantly while retaining your own. Shared files become permanently unreadable to others - no key rotation or re-encryption required." delay={300} />
             <FeatureCard icon={KeyRound} title="Wallet-Derived Keys" description="Encryption keys derived from your wallet signature. Your data never touches servers unencrypted." delay={400} />
             <FeatureCard icon={Unplug} title="On-Chain Audit Trail" description="Immutable file registry on Solana. Every access and revocation is permanently recorded." delay={500} />
           </div>

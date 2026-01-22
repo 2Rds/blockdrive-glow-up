@@ -1,11 +1,9 @@
-import { Link } from "react-router-dom";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Logo } from "@/components/Logo";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { FeatureCard } from "@/components/FeatureCard";
 import { TechHighlights } from "@/components/StatsCounter";
-import { Button } from "@/components/ui/button";
-import { Shield, Zap, Globe, Lock, KeyRound, Wallet, FileKey, Unplug, Play } from "lucide-react";
+import { Shield, Zap, Globe, Lock, KeyRound, Wallet, FileKey, Unplug } from "lucide-react";
 const Index = () => {
   return <div className="min-h-screen relative">
       <AnimatedBackground />
@@ -47,7 +45,7 @@ const Index = () => {
           }}>
               <span className="text-foreground">Unhackable Storage</span>
               <br />
-              <span className="text-gradient">Through Incompleteness</span>
+              <span className="text-gradient">Breach-Proof Storage</span>
             </h1>
 
             {/* Subheadline */}
@@ -60,16 +58,10 @@ const Index = () => {
             </p>
 
             {/* Waitlist Form */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fade-in" style={{
+            <div className="flex justify-center pt-4 animate-fade-in" style={{
             animationDelay: '300ms'
           }}>
               <WaitlistForm />
-              <Link to="/demo">
-                <Button variant="heroOutline" size="lg" className="gap-2">
-                  <Play className="h-4 w-4" />
-                  Try Interactive Demo
-                </Button>
-              </Link>
             </div>
 
             {/* Trust badges */}
@@ -199,8 +191,16 @@ const Index = () => {
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <Logo />
-            <div className="text-sm text-muted-foreground">
-              © 2026 BlockDrive
+            <div className="flex items-center gap-6 text-sm text-muted-foreground">
+              <a href="https://blockdrive.co" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                © 2026 BlockDrive
+              </a>
+              <span>•</span>
+              <a href="https://github.com/2Rds/block-drive-vault" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
+                GitHub
+              </a>
+              <span>•</span>
+              <span>© 2024 BlockDrive</span>
             </div>
           </div>
         </div>

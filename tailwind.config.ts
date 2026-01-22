@@ -54,6 +54,7 @@ export default {
         glow: {
           primary: "hsl(var(--glow-primary))",
           accent: "hsl(var(--glow-accent))",
+          pink: "hsl(var(--glow-pink))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

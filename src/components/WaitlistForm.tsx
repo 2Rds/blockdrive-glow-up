@@ -20,7 +20,8 @@ interface WaitlistFormProps {
   source?: string;
 }
 
-type FormStep = "email" | "optional" | "success";
+type FormStep = "email" | "customer-type" | "optional" | "success";
+type CustomerType = "personal" | "business";
 
 const COMPANY_SIZES = [
   { value: "1-10", label: "1-10 employees" },
@@ -45,6 +46,7 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
   const [company, setCompany] = useState("");
   const [companySize, setCompanySize] = useState("");
   const [useCase, setUseCase] = useState("");
+  const [customerType, setCustomerType] = useState<CustomerType | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { variant } = useABTest();
 
@@ -83,9 +85,9 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
     try {
       toast({
         title: "You're on the list! 🎉",
-        description: "One more step - help us prioritize your access.",
+        description: "One more step - tell us how you'll use BlockDrive.",
       });
-      setStep("optional");
+      setStep("customer-type");
     } finally {
       setIsLoading(false);
     }
@@ -100,13 +102,16 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
         source,
         ab_variant: variant,
         referrer: document.referrer || null,
+        customer_type: customerType,
       };
 
       if (!skip) {
         if (name.trim()) signupData.name = name.trim();
-        if (company.trim()) signupData.company = company.trim();
-        if (companySize) signupData.company_size = companySize;
-        if (useCase) signupData.use_case = useCase;
+        if (customerType === "business") {
+          if (company.trim()) signupData.company = company.trim();
+          if (companySize) signupData.company_size = companySize;
+          if (useCase) signupData.use_case = useCase;
+        }
       }
 
       await submitToWaitlist(signupData);
@@ -143,6 +148,12 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
     setCompany("");
     setCompanySize("");
     setUseCase("");
+    setCustomerType(null);
+  };
+
+  const handleCustomerTypeSelect = (type: CustomerType) => {
+    setCustomerType(type);
+    setStep("optional");
   };
 
   // Email step
@@ -179,13 +190,70 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
     );
   }
 
-  // Optional fields step
+  // Customer type selection step
+  if (step === "customer-type") {
+    return (
+      <div className="w-full max-w-md space-y-4 animate-fade-in">
+        <div className="text-center mb-4">
+          <p className="text-sm text-muted-foreground">
+            How will you use BlockDrive?
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            type="button"
+            onClick={() => handleCustomerTypeSelect("personal")}
+            className={cn(
+              "flex flex-col items-center gap-3 p-6 rounded-xl border-2 transition-all duration-200",
+              "bg-secondary/30 border-border/50 hover:border-primary/50 hover:bg-secondary/50",
+              "focus:outline-none focus:ring-2 focus:ring-primary/20"
+            )}
+          >
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+              <User className="h-6 w-6 text-primary" />
+            </div>
+            <div className="text-center">
+              <h4 className="font-medium text-foreground mb-1">Personal</h4>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Secure my personal files & documents
+              </p>
+            </div>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => handleCustomerTypeSelect("business")}
+            className={cn(
+              "flex flex-col items-center gap-3 p-6 rounded-xl border-2 transition-all duration-200",
+              "bg-secondary/30 border-border/50 hover:border-primary/50 hover:bg-secondary/50",
+              "focus:outline-none focus:ring-2 focus:ring-primary/20"
+            )}
+          >
+            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+              <Building2 className="h-6 w-6 text-primary" />
+            </div>
+            <div className="text-center">
+              <h4 className="font-medium text-foreground mb-1">Business</h4>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Secure storage for my team or clients
+              </p>
+            </div>
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Optional fields step (contextual based on customer type)
   if (step === "optional") {
     return (
       <div className="w-full max-w-md space-y-4 animate-fade-in">
         <div className="text-center mb-4">
           <p className="text-sm text-muted-foreground">
-            Help us prioritize your early access (optional)
+            {customerType === "business" 
+              ? "Help us tailor your experience (optional)"
+              : "One last thing... (optional)"}
           </p>
         </div>
         
@@ -202,52 +270,56 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
             />
           </div>
 
-          <div className="relative">
-            <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Company name"
-              value={company}
-              onChange={(e) => setCompany(e.target.value)}
-              className="h-12 pl-11 bg-secondary/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary rounded-xl"
-              disabled={isLoading}
-            />
-          </div>
-
-          <Select value={companySize} onValueChange={setCompanySize} disabled={isLoading}>
-            <SelectTrigger className={cn(
-              "h-12 bg-secondary/50 border-border/50 text-foreground rounded-xl",
-              !companySize && "text-muted-foreground"
-            )}>
-              <div className="flex items-center gap-3">
-                <Briefcase className="h-4 w-4 text-muted-foreground" />
-                <SelectValue placeholder="Company size" />
+          {customerType === "business" && (
+            <>
+              <div className="relative">
+                <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Company name"
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  className="h-12 pl-11 bg-secondary/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary rounded-xl"
+                  disabled={isLoading}
+                />
               </div>
-            </SelectTrigger>
-            <SelectContent>
-              {COMPANY_SIZES.map((size) => (
-                <SelectItem key={size.value} value={size.value}>
-                  {size.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
 
-          <Select value={useCase} onValueChange={setUseCase} disabled={isLoading}>
-            <SelectTrigger className={cn(
-              "h-12 bg-secondary/50 border-border/50 text-foreground rounded-xl",
-              !useCase && "text-muted-foreground"
-            )}>
-              <SelectValue placeholder="Primary use case" />
-            </SelectTrigger>
-            <SelectContent>
-              {USE_CASES.map((uc) => (
-                <SelectItem key={uc.value} value={uc.value}>
-                  {uc.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+              <Select value={companySize} onValueChange={setCompanySize} disabled={isLoading}>
+                <SelectTrigger className={cn(
+                  "h-12 bg-secondary/50 border-border/50 text-foreground rounded-xl",
+                  !companySize && "text-muted-foreground"
+                )}>
+                  <div className="flex items-center gap-3">
+                    <Briefcase className="h-4 w-4 text-muted-foreground" />
+                    <SelectValue placeholder="Company size" />
+                  </div>
+                </SelectTrigger>
+                <SelectContent>
+                  {COMPANY_SIZES.map((size) => (
+                    <SelectItem key={size.value} value={size.value}>
+                      {size.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <Select value={useCase} onValueChange={setUseCase} disabled={isLoading}>
+                <SelectTrigger className={cn(
+                  "h-12 bg-secondary/50 border-border/50 text-foreground rounded-xl",
+                  !useCase && "text-muted-foreground"
+                )}>
+                  <SelectValue placeholder="Primary use case" />
+                </SelectTrigger>
+                <SelectContent>
+                  {USE_CASES.map((uc) => (
+                    <SelectItem key={uc.value} value={uc.value}>
+                      {uc.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </>
+          )}
         </div>
 
         <div className="flex gap-3 pt-2">

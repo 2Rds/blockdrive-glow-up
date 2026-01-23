@@ -72,7 +72,7 @@ serve(async (req) => {
 
     // Add optional text properties
     if (name) {
-      properties["Name"] = { rich_text: [{ text: { content: name } }] };
+      properties["Full Name"] = { rich_text: [{ text: { content: name } }] };
     }
 
     if (company) {

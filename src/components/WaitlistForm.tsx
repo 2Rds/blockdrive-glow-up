@@ -92,12 +92,16 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
     setIsLoading(true);
     
     try {
-      const { data, error } = await supabase.from("waitlist").insert({
+      // Generate ID client-side to avoid SELECT after INSERT (RLS blocks reads)
+      const newId = crypto.randomUUID();
+      
+      const { error } = await supabase.from("waitlist").insert({
+        id: newId,
         email: validation.data,
         ab_variant: variant,
         source,
         referrer: document.referrer || null,
-      }).select("id").single();
+      });
 
       if (error) {
         if (error.code === "23505") {
@@ -110,7 +114,7 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
           throw error;
         }
       } else {
-        setRecordId(data.id);
+        setRecordId(newId);
         toast({
           title: "You're on the list! 🎉",
           description: "One more step - help us prioritize your access.",

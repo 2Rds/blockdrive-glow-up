@@ -174,6 +174,76 @@ serve(async (req) => {
       console.log("SLACK_WEBHOOK_URL not configured, skipping notification");
     }
 
+    // === SEND CONFIRMATION EMAIL (Fire-and-forget) ===
+    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+
+    if (RESEND_API_KEY) {
+      try {
+        const userName = name || email.split('@')[0];
+        
+        const emailResponse = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${RESEND_API_KEY}`,
+          },
+          body: JSON.stringify({
+            from: "BlockDrive <onboarding@resend.dev>",
+            to: [email],
+            subject: "You're on the BlockDrive waitlist! 🎉",
+            html: `
+              <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px; background: #0a0a0a; color: #ffffff;">
+                <div style="text-align: center; margin-bottom: 40px;">
+                  <h1 style="font-size: 28px; font-weight: 700; margin: 0; background: linear-gradient(135deg, #22c55e, #10b981); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">BlockDrive</h1>
+                </div>
+                
+                <h2 style="color: #ffffff; font-size: 24px; margin-bottom: 20px;">Welcome to the future, ${userName}!</h2>
+                
+                <p style="color: #a1a1aa; line-height: 1.8; font-size: 16px; margin-bottom: 24px;">
+                  You're officially on our waitlist. We're building the next generation of secure, 
+                  decentralized file storage — and we're thrilled to have you along for the ride.
+                </p>
+                
+                <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1)); border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 12px; padding: 24px; margin-bottom: 24px;">
+                  <h3 style="color: #22c55e; font-size: 18px; margin: 0 0 16px 0;">What happens next?</h3>
+                  <ul style="color: #d4d4d8; line-height: 2; margin: 0; padding-left: 20px;">
+                    <li>We'll notify you as soon as early access opens</li>
+                    <li>You'll get exclusive updates on our progress</li>
+                    <li>Early supporters get priority access and special perks</li>
+                  </ul>
+                </div>
+                
+                <p style="color: #a1a1aa; line-height: 1.8; font-size: 16px; margin-bottom: 32px;">
+                  In the meantime, feel free to reply to this email with any questions 
+                  or ideas — we read every message.
+                </p>
+                
+                <div style="border-top: 1px solid #27272a; padding-top: 24px; margin-top: 32px;">
+                  <p style="color: #71717a; font-size: 14px; margin: 0;">
+                    Cheers,<br/>
+                    <strong style="color: #a1a1aa;">The BlockDrive Team</strong>
+                  </p>
+                </div>
+              </div>
+            `,
+          }),
+        });
+
+        if (emailResponse.ok) {
+          const emailData = await emailResponse.json();
+          console.log(`Confirmation email sent to: ${email}, id: ${emailData.id}`);
+        } else {
+          const errorData = await emailResponse.json();
+          console.error(`Email send failed [${emailResponse.status}]:`, errorData);
+        }
+      } catch (emailError) {
+        // Don't fail the whole request if email fails
+        console.error("Confirmation email error:", emailError);
+      }
+    } else {
+      console.log("RESEND_API_KEY not configured, skipping confirmation email");
+    }
+
     return new Response(
       JSON.stringify({ success: true, pageId: notionData.id }),
       { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }

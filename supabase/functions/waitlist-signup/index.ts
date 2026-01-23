@@ -188,7 +188,7 @@ serve(async (req) => {
             "Authorization": `Bearer ${RESEND_API_KEY}`,
           },
           body: JSON.stringify({
-            from: "BlockDrive <onboarding@resend.dev>",
+            from: "BlockDrive <team@waitlist.blockdrive.co>",
             to: [email],
             subject: "You're on the BlockDrive waitlist! 🎉",
             html: `

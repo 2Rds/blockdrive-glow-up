@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
 import { ArrowRight, Loader2, ChevronRight, Check, Building2, User, Briefcase } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { useABTest } from "@/contexts/ABTestContext";
 import { z } from "zod";
 import {
@@ -47,33 +46,23 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
   const [companySize, setCompanySize] = useState("");
   const [useCase, setUseCase] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [recordId, setRecordId] = useState<string | null>(null);
   const { variant } = useABTest();
 
-  const triggerNotifications = async (data: Record<string, unknown>) => {
+  const submitToWaitlist = async (data: Record<string, unknown>) => {
     const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-    const anonKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
     
-    // Fire-and-forget notifications - don't block UI
-    // Include apikey header for authentication
-    Promise.all([
-      fetch(`${supabaseUrl}/functions/v1/notify-slack`, {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "apikey": anonKey,
-        },
-        body: JSON.stringify(data),
-      }).catch(err => console.error("Slack notification failed:", err)),
-      fetch(`${supabaseUrl}/functions/v1/sync-to-notion`, {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "apikey": anonKey,
-        },
-        body: JSON.stringify(data),
-      }).catch(err => console.error("Notion sync failed:", err)),
-    ]);
+    const response = await fetch(`${supabaseUrl}/functions/v1/waitlist-signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Failed to submit");
+    }
+
+    return response.json();
   };
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
@@ -92,34 +81,48 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
     setIsLoading(true);
     
     try {
-      // Generate ID client-side to avoid SELECT after INSERT (RLS blocks reads)
-      const newId = crypto.randomUUID();
-      
-      const { error } = await supabase.from("waitlist").insert({
-        id: newId,
-        email: validation.data,
-        ab_variant: variant,
-        source,
-        referrer: document.referrer || null,
+      toast({
+        title: "You're on the list! 🎉",
+        description: "One more step - help us prioritize your access.",
       });
+      setStep("optional");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-      if (error) {
-        if (error.code === "23505") {
-          toast({
-            title: "Already on the list!",
-            description: "This email is already registered. We'll reach out soon!",
-          });
-          setStep("success");
-        } else {
-          throw error;
-        }
-      } else {
-        setRecordId(newId);
+  const handleOptionalSubmit = async (skip: boolean = false) => {
+    setIsLoading(true);
+    
+    try {
+      const signupData: Record<string, unknown> = {
+        email: email.trim(),
+        source,
+        ab_variant: variant,
+        referrer: document.referrer || null,
+      };
+
+      if (!skip) {
+        if (name.trim()) signupData.name = name.trim();
+        if (company.trim()) signupData.company = company.trim();
+        if (companySize) signupData.company_size = companySize;
+        if (useCase) signupData.use_case = useCase;
+      }
+
+      await submitToWaitlist(signupData);
+
+      setStep("success");
+      
+      if (!skip && (name.trim() || company.trim() || companySize || useCase)) {
         toast({
-          title: "You're on the list! 🎉",
-          description: "One more step - help us prioritize your access.",
+          title: "Profile complete! ✨",
+          description: "You're all set. We'll be in touch soon!",
         });
-        setStep("optional");
+      } else {
+        toast({
+          title: "You're all set!",
+          description: "We'll notify you when BlockDrive is ready.",
+        });
       }
     } catch (error) {
       console.error("Waitlist signup error:", error);
@@ -133,58 +136,6 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
     }
   };
 
-  const handleOptionalSubmit = async (skip: boolean = false) => {
-    setIsLoading(true);
-    
-    try {
-      const updateData: Record<string, string> = {};
-      if (!skip) {
-        if (name.trim()) updateData.name = name.trim();
-        if (company.trim()) updateData.company = company.trim();
-        if (companySize) updateData.company_size = companySize;
-        if (useCase) updateData.use_case = useCase;
-      }
-
-      // Update record if we have optional data and a record ID
-      if (recordId && Object.keys(updateData).length > 0) {
-        const { error } = await supabase
-          .from("waitlist")
-          .update(updateData)
-          .eq("id", recordId);
-
-        if (error) {
-          console.error("Error updating waitlist record:", error);
-        }
-      }
-
-      // Trigger notifications with all data
-      await triggerNotifications({
-        email,
-        name: updateData.name || null,
-        company: updateData.company || null,
-        company_size: updateData.company_size || null,
-        use_case: updateData.use_case || null,
-        source,
-        ab_variant: variant,
-        referrer: document.referrer || null,
-      });
-
-      setStep("success");
-      
-      if (!skip && Object.keys(updateData).length > 0) {
-        toast({
-          title: "Profile complete! ✨",
-          description: "You're all set. We'll be in touch soon!",
-        });
-      }
-    } catch (error) {
-      console.error("Error completing profile:", error);
-      setStep("success");
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const resetForm = () => {
     setStep("email");
     setEmail("");
@@ -192,7 +143,6 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
     setCompany("");
     setCompanySize("");
     setUseCase("");
-    setRecordId(null);
   };
 
   // Email step

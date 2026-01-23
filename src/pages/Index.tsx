@@ -50,7 +50,7 @@ const Index = () => {
           }}>
               <span className="text-foreground">Breach-Proof Storage</span>
               <br />
-              <span className="text-gradient">Through Incompleteness </span>
+              <span className="text-gradient">For Sensitive Data</span>
             </h1>
 
             {/* Subheadline */}
@@ -92,10 +92,7 @@ const Index = () => {
             animationDelay: '500ms'
           }}>
               <Link to="/demo">
-                <Button 
-                  variant="outline" 
-                  className="group relative gap-2 px-6 py-5 text-sm font-medium border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300"
-                >
+                <Button variant="outline" className="group relative gap-2 px-6 py-5 text-sm font-medium border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300">
                   <span className="absolute inset-0 rounded-md bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <Play className="h-4 w-4 text-primary transition-transform duration-300 group-hover:scale-110" />
                   <span className="relative">Try Interactive Demo</span>

@@ -48,7 +48,7 @@ const Index = () => {
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight animate-fade-in" style={{
             animationDelay: '100ms'
           }}>
-              <span className="text-foreground">Breach-Proof Storage</span>
+              <span className="text-foreground">Breach-Proof Cloud Storage</span>
               <br />
               <span className="text-gradient">For Sensitive Data</span>
             </h1>
@@ -210,7 +210,7 @@ const Index = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <Logo />
             <span className="text-sm text-muted-foreground">
-              © 2025 BlockDrive
+              © 2026 BlockDrive
             </span>
           </div>
         </div>

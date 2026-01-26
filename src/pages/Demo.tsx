@@ -8,25 +8,22 @@ import { StepWallet } from "@/components/demo/steps/StepWallet";
 import { StepUpload } from "@/components/demo/steps/StepUpload";
 import { StepEncrypt } from "@/components/demo/steps/StepEncrypt";
 import { StepShare } from "@/components/demo/steps/StepShare";
-import { StepRevoke } from "@/components/demo/steps/StepRevoke";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, X } from "lucide-react";
 
-const STEP_NAMES = ["Connect", "Upload", "Encrypt", "Share", "Revoke"];
+const STEP_NAMES = ["Connect", "Upload", "Encrypt", "Share"];
 
 interface DemoState {
   walletAddress?: string;
   selectedFile?: { name: string; size: string };
   encryptionComplete: boolean;
   recipientAddress?: string;
-  isRevoked: boolean;
 }
 
 const Demo = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [state, setState] = useState<DemoState>({
     encryptionComplete: false,
-    isRevoked: false,
   });
 
   // Check if current step allows proceeding
@@ -40,8 +37,6 @@ const Demo = () => {
         return state.encryptionComplete;
       case 3:
         return !!state.recipientAddress;
-      case 4:
-        return state.isRevoked;
       default:
         return false;
     }
@@ -64,10 +59,6 @@ const Demo = () => {
     setState((prev) => ({ ...prev, recipientAddress: recipient }));
   };
 
-  const handleRevokeComplete = () => {
-    setState((prev) => ({ ...prev, isRevoked: true }));
-  };
-
   const handleNext = () => {
     if (canProceed() && currentStep < STEP_NAMES.length - 1) {
       setCurrentStep((prev) => prev + 1);
@@ -84,7 +75,6 @@ const Demo = () => {
     setCurrentStep(0);
     setState({
       encryptionComplete: false,
-      isRevoked: false,
     });
   };
 
@@ -133,15 +123,6 @@ const Demo = () => {
             file={state.selectedFile!}
             onComplete={handleShareComplete}
             recipientAddress={state.recipientAddress}
-          />
-        );
-      case 4:
-        return (
-          <StepRevoke
-            file={state.selectedFile!}
-            recipientAddress={state.recipientAddress!}
-            onComplete={handleRevokeComplete}
-            isRevoked={state.isRevoked}
           />
         );
       default:

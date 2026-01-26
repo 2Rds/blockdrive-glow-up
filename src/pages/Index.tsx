@@ -5,105 +5,102 @@ import { WaitlistForm } from "@/components/WaitlistForm";
 import { FeatureCard } from "@/components/FeatureCard";
 import { TechHighlights } from "@/components/StatsCounter";
 import { Button } from "@/components/ui/button";
-import { Shield, Zap, Globe, Lock, KeyRound, Wallet, FileKey, Unplug, Play } from "lucide-react";
+import { Shield, Zap, Lock, Globe, KeyRound, Wallet, FileKey, Unplug, Play, ArrowRight } from "lucide-react";
+
 const Index = () => {
-  return <div className="min-h-screen relative">
+  return (
+    <div className="min-h-screen relative">
       <AnimatedBackground />
-      
+
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/50 border-b border-border/50">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <Logo />
-          <nav className="hidden md:flex items-center gap-6">
-            <a href="https://blockdrive.co" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-              About
-            </a>
-            <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <nav className="hidden md:flex items-center gap-8">
+            <a
+              href="#features"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+            >
               Features
             </a>
-            <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <a
+              href="#how-it-works"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+            >
               How It Works
             </a>
-            <Link to="/demo" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
-              Try Demo
+            <Link to="/demo">
+              <Button variant="outline" size="sm">
+                <Play className="h-4 w-4 mr-1" />
+                Try Demo
+              </Button>
             </Link>
           </nav>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="container mx-auto max-w-5xl">
-          <div className="text-center space-y-8">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border/50 text-sm text-muted-foreground animate-fade-in">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-              </span>
-              Early Access — Be First In Line
+      <section className="pt-36 pb-28 px-6">
+        <div className="container mx-auto max-w-4xl text-center">
+          {/* Status badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border/50 mb-8 animate-fade-in">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+            </span>
+            <span className="text-sm text-muted-foreground">
+              Early Access 2026
+            </span>
+          </div>
+
+          {/* Main Headline */}
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-semibold tracking-tight text-foreground mb-8 animate-fade-in leading-[1.1]" style={{ animationDelay: '100ms' }}>
+            The future of
+            <br />
+            <span className="text-gradient">secure cloud storage</span>
+          </h1>
+
+          {/* Subheadline */}
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in" style={{ animationDelay: '200ms' }}>
+            BlockDrive uses Programmed Incompleteness to make your files mathematically
+            unreadable — even if breached. True ownership. Zero trust required.
+          </p>
+
+          {/* Waitlist Form */}
+          <div className="flex justify-center mb-8 animate-fade-in" style={{ animationDelay: '300ms' }}>
+            <WaitlistForm />
+          </div>
+
+          {/* Trust badges */}
+          <div className="flex flex-wrap justify-center gap-4 pt-4 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: '400ms' }}>
+            <div className="flex items-center gap-2">
+              <Shield className="h-4 w-4 text-primary" />
+              <span>Privacy-First Design</span>
             </div>
-
-            {/* Main Headline */}
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-bold leading-tight animate-fade-in" style={{
-            animationDelay: '100ms'
-          }}>
-              <span className="text-foreground">Breach-Proof Cloud Storage</span>
-              <br />
-              <span className="text-gradient">For Sensitive Data</span>
-            </h1>
-
-            {/* Subheadline */}
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{
-            animationDelay: '200ms'
-          }}>
-              BlockDrive's "Programmed Incompleteness" architecture splits your encrypted files, 
-              storing critical bytes separately. Even if breached, your data remains 
-              permanently unreadable — with instant revoke at any time.
-            </p>
-
-            {/* Waitlist Form */}
-            <div className="flex justify-center pt-4 animate-fade-in" style={{
-            animationDelay: '300ms'
-          }}>
-              <WaitlistForm />
+            <div className="flex items-center gap-2">
+              <Lock className="h-4 w-4 text-primary" />
+              <span>Military-Grade Encryption</span>
             </div>
-
-            {/* Trust badges */}
-            <div className="flex flex-wrap justify-center gap-4 pt-4 text-sm text-muted-foreground animate-fade-in" style={{
-            animationDelay: '400ms'
-          }}>
-              <div className="flex items-center gap-2">
-                <Shield className="h-4 w-4 text-primary" />
-                <span>Privacy-First Design</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Lock className="h-4 w-4 text-primary" />
-                <span>Military-Grade Encryption</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Globe className="h-4 w-4 text-primary" />
-                <span>Built on Solana</span>
-              </div>
+            <div className="flex items-center gap-2">
+              <Globe className="h-4 w-4 text-primary" />
+              <span>Built on Solana</span>
             </div>
+          </div>
 
-            {/* Demo Button */}
-            <div className="flex justify-center pt-6 animate-fade-in" style={{
-            animationDelay: '500ms'
-          }}>
-              <Link to="/demo">
-                <Button variant="outline" className="group relative gap-2 px-6 py-5 text-sm font-medium border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/50 transition-all duration-300">
-                  <span className="absolute inset-0 rounded-md bg-gradient-to-r from-primary/10 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <Play className="h-4 w-4 text-primary transition-transform duration-300 group-hover:scale-110" />
-                  <span className="relative">Try Interactive Demo</span>
-                </Button>
-              </Link>
-            </div>
+          {/* Demo link */}
+          <div className="animate-fade-in pt-8" style={{ animationDelay: '500ms' }}>
+            <Link
+              to="/demo"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+            >
+              <Play className="h-4 w-4" />
+              Watch how it works
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Tech Highlights Section */}
+      {/* Tech Highlights */}
       <section className="py-16 px-6">
         <div className="container mx-auto max-w-4xl">
           <div className="rounded-2xl bg-card/30 border border-border/50 backdrop-blur-sm p-8">
@@ -112,109 +109,181 @@ const Index = () => {
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 px-6">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-              How <span className="text-gradient">Programmed Incompleteness</span> Works
-            </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              A revolutionary security architecture that makes your data permanently unreadable without your permission.
-            </p>
-          </div>
-
-          <div className="grid gap-6">
-            <div className="flex items-start gap-4 p-6 rounded-2xl bg-card/50 border border-border/50">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold">
-                1
-              </div>
-              <div>
-                <h3 className="text-lg font-display font-semibold text-foreground mb-1">Encrypt & Split</h3>
-                <p className="text-muted-foreground">Your file is encrypted using military-grade security with a key derived from your wallet. Critical bytes are extracted and stored separately — the main file is now mathematically incomplete.</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4 p-6 rounded-2xl bg-card/50 border border-border/50">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold">
-                2
-              </div>
-              <div>
-                <h3 className="text-lg font-display font-semibold text-foreground mb-1">Distributed Storage</h3>
-                <p className="text-muted-foreground">Bulk encrypted data is stored on Filebase's enterprise-grade IPFS infrastructure. The critical 16 bytes are stored separately on Cloudflare R2, protected by privacy proofs and Solana-verified access controls.</p>
-              </div>
-            </div>
-            
-            <div className="flex items-start gap-4 p-6 rounded-2xl bg-card/50 border border-border/50">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold">
-                3
-              </div>
-              <div>
-                <h3 className="text-lg font-display font-semibold text-foreground mb-1">Instant Revoke</h3>
-                <p className="text-muted-foreground">Revoke shared access instantly by deleting recipient-specific critical bytes. Your original access remains intact, while shared files become permanently unreadable to recipients - no key rotation needed.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Features Section */}
-      <section id="features" className="py-20 px-6">
+      <section id="features" className="py-28 px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-              Built for <span className="text-gradient">True Ownership</span>
+            <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4 animate-fade-up">Features</p>
+            <h2 className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-foreground mb-6 animate-fade-up delay-100">
+              Enterprise security,
+              <br />
+              <span className="text-gradient">redefined</span>
             </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Enterprise-grade security meets Web3 sovereignty.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-up delay-200">
+              Every feature designed for true data ownership and uncompromising privacy.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <FeatureCard icon={FileKey} title="Programmed Incompleteness" description="Files are mathematically incomplete without critical bytes. Even breached data remains unreadable forever." delay={0} />
-            <FeatureCard icon={Wallet} title="Embedded Wallet Authentication" description="Seamless sign-in with no extensions or gas fees. Your wallet is built-in, invisible, and always ready." delay={100} />
-            <FeatureCard icon={Shield} title="Privacy Proofs" description="Prove you own your files without revealing any contents. Complete privacy by design." delay={200} />
-            <FeatureCard icon={Zap} title="Instant Revoke" description="Revoke recipient access instantly while retaining your own. Shared files become permanently unreadable to others - no key rotation or re-encryption required." delay={300} />
-            <FeatureCard icon={KeyRound} title="Wallet-Derived Keys" description="Encryption keys derived from your wallet signature. Your data never touches servers unencrypted." delay={400} />
-            <FeatureCard icon={Unplug} title="On-Chain Audit Trail" description="Immutable file registry on Solana. Every access and revocation is permanently recorded." delay={500} />
+            <FeatureCard
+              icon={FileKey}
+              title="Programmed Incompleteness"
+              description="Files are mathematically incomplete without critical bytes. Even breached data remains unreadable forever."
+              delay={0}
+            />
+            <FeatureCard
+              icon={Wallet}
+              title="Embedded Wallet"
+              description="Seamless authentication with no extensions or gas fees. Your wallet is built-in and invisible."
+              delay={100}
+            />
+            <FeatureCard
+              icon={Shield}
+              title="Privacy Proofs"
+              description="Prove file ownership without revealing contents. Complete privacy by cryptographic design."
+              delay={200}
+            />
+            <FeatureCard
+              icon={Zap}
+              title="Blazing Fast Access"
+              description="Retrieve and reconstruct your files instantly. No slow decryption chains or network bottlenecks."
+              delay={300}
+            />
+            <FeatureCard
+              icon={KeyRound}
+              title="Wallet-Derived Keys"
+              description="Encryption keys derived from your wallet. Your data never touches servers unencrypted."
+              delay={400}
+            />
+            <FeatureCard
+              icon={Unplug}
+              title="On-Chain Audit"
+              description="Immutable file registry on Solana. Every access is permanently and transparently recorded."
+              delay={500}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-28 px-6">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-16">
+            <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4 animate-fade-up">How It Works</p>
+            <h2 className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-foreground mb-6 animate-fade-up delay-100">
+              Three steps to
+              <br />
+              <span className="text-gradient">breach-proof storage</span>
+            </h2>
+          </div>
+
+          <div className="space-y-6">
+            {[
+              {
+                num: "01",
+                title: "Encrypt & Split",
+                desc: "Your file is encrypted with AES-256-GCM using a key derived from your wallet. Critical bytes are extracted and stored separately — the main file becomes mathematically incomplete.",
+              },
+              {
+                num: "02",
+                title: "Distributed Storage",
+                desc: "Encrypted data goes to enterprise-grade IPFS. The critical bytes are stored separately on Cloudflare R2, protected by zero-knowledge proofs and Solana-verified access controls.",
+              },
+              {
+                num: "03",
+                title: "Secure Retrieval",
+                desc: "When you need your files, both pieces are fetched and recombined client-side. Only your wallet can decrypt — no one else, not even BlockDrive, can access your data.",
+              },
+            ].map((step, index) => (
+              <div
+                key={step.num}
+                className="group flex gap-5 items-start p-6 rounded-2xl bg-card/50 border border-border/50 hover:border-primary/30 hover:bg-card/60 transition-all duration-300 animate-fade-up"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center text-lg font-display font-semibold text-primary-foreground">
+                  {step.num}
+                </div>
+                <div className="pt-1">
+                  <h3 className="text-xl font-display font-semibold text-foreground mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6">
+      <section className="py-28 px-6">
         <div className="container mx-auto max-w-3xl">
           <div className="relative rounded-3xl bg-gradient-to-br from-card to-secondary/50 border border-border/50 p-12 text-center overflow-hidden">
             {/* Background glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/20 rounded-full blur-[100px]" />
-            
+
             <div className="relative">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-                Be First to Experience True Data Ownership
+              <h2 className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-foreground mb-6">
+                Ready to take control
+                <br />
+                <span className="text-gradient">of your data?</span>
               </h2>
-              <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
-                Join the waitlist for early access to BlockDrive. 
-                Storage that's mathematically breach-proof by design, not just by encryption.
+              <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
+                Join the waitlist for early access to storage that's mathematically
+                breach-proof by design.
               </p>
-              <div className="flex justify-center">
-                <WaitlistForm />
+
+              <div className="flex justify-center mb-8">
+                <WaitlistForm source="cta" />
               </div>
+
+              <Link to="/demo">
+                <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
+                  <Play className="h-4 w-4 mr-2" />
+                  Or try the interactive demo
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 border-t border-border/50">
+      <footer className="py-10 px-6 border-t border-border/50">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <Logo />
+            <div className="flex items-center gap-8">
+              <a
+                href="#features"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+              >
+                Features
+              </a>
+              <a
+                href="#how-it-works"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+              >
+                How It Works
+              </a>
+              <Link
+                to="/demo"
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
+              >
+                Demo
+              </Link>
+            </div>
             <span className="text-sm text-muted-foreground">
               © 2026 BlockDrive
             </span>
           </div>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;

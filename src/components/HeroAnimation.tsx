@@ -47,7 +47,7 @@ export const HeroAnimation = () => {
   const isProtected = stage >= 4;
 
   return (
-    <div className="relative w-full max-w-md mx-auto">
+    <div className="relative w-full max-w-xs sm:max-w-md mx-auto">
       {/* Main container with glow */}
       <div className="relative py-12">
         {/* Background glow */}
@@ -62,18 +62,18 @@ export const HeroAnimation = () => {
         />
 
         {/* File visualization */}
-        <div className="relative flex justify-center items-center gap-8">
+        <div className="relative flex justify-center items-center gap-4 sm:gap-8">
           {/* Original file (left side when split) */}
           <div
             className={cn(
               "relative transition-all duration-700 ease-out",
-              isSplitting ? "translate-x-[-20px]" : "translate-x-0"
+              isSplitting ? "sm:translate-x-[-20px]" : "translate-x-0"
             )}
           >
             {/* File container */}
             <div
               className={cn(
-                "relative p-6 rounded-2xl glass-card transition-all duration-500",
+                "relative p-4 sm:p-6 rounded-xl sm:rounded-2xl glass-card transition-all duration-500",
                 isEncrypting && "border-primary/30",
                 isProtected && "glow-primary"
               )}
@@ -157,12 +157,12 @@ export const HeroAnimation = () => {
               "transition-all duration-700 ease-out",
               isSplitting
                 ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-[-40px] pointer-events-none"
+                : "opacity-0 sm:translate-x-[-40px] pointer-events-none"
             )}
           >
             <div
               className={cn(
-                "relative p-5 rounded-2xl glass-card border-primary/30 transition-all duration-500",
+                "relative p-3 sm:p-5 rounded-xl sm:rounded-2xl glass-card border-primary/30 transition-all duration-500",
                 isProtected && "glow-primary"
               )}
             >

@@ -136,7 +136,7 @@ const Demo = () => {
 
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/50 border-b border-border/50">
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
           <Link to="/">
             <Logo />
           </Link>
@@ -160,7 +160,7 @@ const Demo = () => {
       </header>
 
       {/* Mobile progress */}
-      <div className="md:hidden fixed top-20 left-0 right-0 z-40 px-6 py-3 bg-background/80 backdrop-blur-sm border-b border-border/30">
+      <div className="md:hidden fixed top-[52px] left-0 right-0 z-40 px-4 py-2 bg-background/80 backdrop-blur-sm border-b border-border/30">
         <DemoProgress
           currentStep={currentStep}
           totalSteps={STEP_NAMES.length}
@@ -169,7 +169,7 @@ const Demo = () => {
       </div>
 
       {/* Main content */}
-      <main className="container mx-auto px-6 pt-32 md:pt-28 pb-32">
+      <main className="container mx-auto px-4 md:px-6 pt-28 md:pt-28 pb-24 md:pb-32">
         <div className="max-w-6xl mx-auto">
           {renderStep()}
         </div>
@@ -177,7 +177,7 @@ const Demo = () => {
 
       {/* Navigation footer */}
       <footer className="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-md bg-background/80 border-t border-border/50">
-        <div className="container mx-auto px-6 py-4">
+        <div className="container mx-auto px-4 md:px-6 py-3 md:py-4">
           <DemoNavigation
             currentStep={currentStep}
             totalSteps={STEP_NAMES.length}

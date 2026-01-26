@@ -7,14 +7,14 @@ interface HighlightItemProps {
 }
 
 const HighlightItem = ({ icon, title, description }: HighlightItemProps) => (
-  <div className="text-center flex flex-col items-center gap-2">
-    <div className="p-3 rounded-xl bg-gradient-primary mb-1">
+  <div className="text-center flex flex-col items-center gap-1 sm:gap-2">
+    <div className="p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-gradient-primary mb-0.5 sm:mb-1">
       {icon}
     </div>
-    <div className="text-lg font-display font-semibold text-foreground">
+    <div className="text-xs sm:text-sm md:text-lg font-display font-semibold text-foreground leading-tight">
       {title}
     </div>
-    <div className="text-sm text-muted-foreground max-w-[180px]">
+    <div className="text-[10px] sm:text-xs md:text-sm text-muted-foreground max-w-[100px] sm:max-w-[140px] md:max-w-[180px] leading-tight">
       {description}
     </div>
   </div>
@@ -22,7 +22,7 @@ const HighlightItem = ({ icon, title, description }: HighlightItemProps) => (
 
 export const TechHighlights = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 py-8">
+    <div className="grid grid-cols-3 gap-3 sm:gap-6 md:gap-12 py-4 sm:py-6 md:py-8">
       <HighlightItem
         icon={<Shield className="h-5 w-5 text-primary-foreground" />}
         title="Military-Grade Encryption"

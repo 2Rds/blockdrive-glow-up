@@ -152,7 +152,7 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
   // Email step
   if (step === "email") {
     return (
-      <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+      <form onSubmit={handleEmailSubmit} className="flex flex-col sm:flex-row gap-3 w-full max-w-xs sm:max-w-md">
         <div className="relative flex-1">
           <Input
             type="email"
@@ -185,27 +185,27 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
   // Customer type selection step
   if (step === "customer-type") {
     return (
-      <div className="w-full max-w-md space-y-6 animate-fade-up">
+      <div className="w-full max-w-xs sm:max-w-md space-y-4 sm:space-y-6 animate-fade-up">
         <p className="text-muted-foreground text-center text-sm">
           How will you use BlockDrive?
         </p>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4">
           <button
             type="button"
             onClick={() => handleCustomerTypeSelect("personal")}
             className={cn(
-              "group flex flex-col items-center gap-3 p-6 rounded-xl border transition-all duration-300",
+              "group flex flex-col items-center gap-2 sm:gap-3 p-4 sm:p-6 rounded-xl border transition-all duration-300",
               "bg-card/50 border-border/50 hover:border-primary/30 hover:bg-card/80",
               "focus:outline-none focus:ring-2 focus:ring-primary/20"
             )}
           >
-            <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center group-hover:glow-primary transition-all duration-300">
-              <User className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-secondary flex items-center justify-center group-hover:glow-primary transition-all duration-300">
+              <User className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
             </div>
             <div className="text-center">
-              <h4 className="font-display font-semibold text-foreground text-sm">Personal</h4>
-              <p className="text-xs text-muted-foreground mt-1">
+              <h4 className="font-display font-semibold text-foreground text-xs sm:text-sm">Personal</h4>
+              <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">
                 For individual use
               </p>
             </div>
@@ -215,17 +215,17 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
             type="button"
             onClick={() => handleCustomerTypeSelect("business")}
             className={cn(
-              "group flex flex-col items-center gap-3 p-6 rounded-xl border transition-all duration-300",
+              "group flex flex-col items-center gap-2 sm:gap-3 p-4 sm:p-6 rounded-xl border transition-all duration-300",
               "bg-card/50 border-border/50 hover:border-accent/30 hover:bg-card/80",
               "focus:outline-none focus:ring-2 focus:ring-accent/20"
             )}
           >
-            <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center group-hover:glow-accent transition-all duration-300">
-              <Building2 className="h-5 w-5 text-muted-foreground group-hover:text-accent transition-colors duration-300" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-secondary flex items-center justify-center group-hover:glow-accent transition-all duration-300">
+              <Building2 className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground group-hover:text-accent transition-colors duration-300" />
             </div>
             <div className="text-center">
-              <h4 className="font-display font-semibold text-foreground text-sm">Business</h4>
-              <p className="text-xs text-muted-foreground mt-1">
+              <h4 className="font-display font-semibold text-foreground text-xs sm:text-sm">Business</h4>
+              <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">
                 For teams & companies
               </p>
             </div>
@@ -238,7 +238,7 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
   // Optional fields step
   if (step === "optional") {
     return (
-      <div className="w-full max-w-md space-y-5 animate-fade-up">
+      <div className="w-full max-w-xs sm:max-w-md space-y-4 sm:space-y-5 animate-fade-up">
         <p className="text-muted-foreground text-center text-sm">
           {customerType === "business" ? "Tell us about your company" : "Almost there"}
           <span className="text-muted-foreground/50"> (optional)</span>
@@ -326,7 +326,7 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
 
   // Success step
   return (
-    <div className="w-full max-w-md text-center space-y-5 animate-fade-up">
+    <div className="w-full max-w-xs sm:max-w-md text-center space-y-4 sm:space-y-5 animate-fade-up">
       <div className="w-16 h-16 rounded-full bg-gradient-primary flex items-center justify-center mx-auto">
         <Check className="h-8 w-8 text-primary-foreground" />
       </div>

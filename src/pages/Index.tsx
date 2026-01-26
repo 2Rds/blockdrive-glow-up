@@ -3,7 +3,6 @@ import { AnimatedBackground } from "@/components/AnimatedBackground";
 import { Logo } from "@/components/Logo";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { FeatureCard } from "@/components/FeatureCard";
-import { TechHighlights } from "@/components/StatsCounter";
 import { HeroAnimation } from "@/components/HeroAnimation";
 import { FAQ } from "@/components/FAQ";
 import { Button } from "@/components/ui/button";
@@ -43,7 +42,7 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="pt-36 pb-28 px-6">
+      <section className="pt-24 pb-16 md:pt-36 md:pb-28 px-4 md:px-6">
         <div className="container mx-auto max-w-4xl text-center">
           {/* Status badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/50 border border-border/50 mb-8 animate-fade-in">
@@ -57,14 +56,14 @@ const Index = () => {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-semibold tracking-tight text-foreground mb-8 animate-fade-in leading-[1.1]" style={{ animationDelay: '100ms' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-semibold tracking-tight text-foreground mb-6 md:mb-8 animate-fade-in leading-[1.1]" style={{ animationDelay: '100ms' }}>
             Cloud Storage for
             <br />
             <span className="text-gradient">the New Internet</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in" style={{ animationDelay: '200ms' }}>
+          <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed animate-fade-in" style={{ animationDelay: '200ms' }}>
             BlockDrive uses Programmed Incompleteness to make your files mathematically
             unreadable — even if breached. True ownership. Zero trust required.
           </p>
@@ -112,26 +111,15 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Tech Highlights */}
-      <section className="py-16 px-6">
-        <div className="container mx-auto max-w-4xl">
-          <ScrollReveal animation="scale-in">
-            <div className="rounded-2xl glass-card p-8">
-              <TechHighlights />
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
       {/* Features Section */}
-      <section id="features" className="py-28 px-6">
+      <section id="features" className="py-16 md:py-28 px-1.5 sm:px-4 md:px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <ScrollReveal>
               <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4">Features</p>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-foreground mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-semibold tracking-tight text-foreground mb-4 md:mb-6">
                 Data Security,
                 <br />
                 <span className="text-gradient">Redefined</span>
@@ -144,7 +132,7 @@ const Index = () => {
             </ScrollReveal>
           </div>
 
-          <ScrollRevealGrid className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={100}>
+          <ScrollRevealGrid className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6" staggerDelay={100}>
             <FeatureCard
               icon={FileKey}
               title="Programmed Incompleteness"
@@ -180,14 +168,14 @@ const Index = () => {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="py-28 px-6">
+      <section id="how-it-works" className="py-16 md:py-28 px-4 md:px-6">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-16">
             <ScrollReveal>
               <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4">How It Works</p>
             </ScrollReveal>
             <ScrollReveal delay={100}>
-              <h2 className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-foreground mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-semibold tracking-tight text-foreground mb-4 md:mb-6">
                 Three Steps to
                 <br />
                 <span className="text-gradient">Breach-Proof Storage</span>
@@ -195,7 +183,7 @@ const Index = () => {
             </ScrollReveal>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-3 md:space-y-6">
             {[
               {
                 num: "01",
@@ -214,15 +202,15 @@ const Index = () => {
               },
             ].map((step, index) => (
               <ScrollReveal key={step.num} delay={index * 100}>
-                <div className="group flex gap-5 items-start p-6 rounded-2xl glass-card glass-card-hover glow-hover transition-all duration-300">
-                  <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center text-lg font-display font-semibold text-primary-foreground shadow-lg shadow-primary/20">
+                <div className="group flex gap-3 md:gap-5 items-start p-4 md:p-6 rounded-xl md:rounded-2xl glass-card glass-card-hover glow-hover transition-all duration-300">
+                  <div className="flex-shrink-0 w-10 h-10 md:w-14 md:h-14 rounded-lg md:rounded-xl bg-gradient-primary flex items-center justify-center text-sm md:text-lg font-display font-semibold text-primary-foreground shadow-lg shadow-primary/20">
                     {step.num}
                   </div>
-                  <div className="pt-1">
-                    <h3 className="text-xl font-display font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                  <div className="pt-0.5 md:pt-1">
+                    <h3 className="text-base md:text-xl font-display font-semibold text-foreground mb-1 md:mb-2 group-hover:text-primary transition-colors duration-300">
                       {step.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-xs md:text-base text-muted-foreground leading-relaxed">
                       {step.desc}
                     </p>
                   </div>
@@ -237,20 +225,20 @@ const Index = () => {
       <FAQ />
 
       {/* CTA Section */}
-      <section className="py-28 px-6">
+      <section className="py-16 md:py-28 px-4 md:px-6">
         <div className="container mx-auto max-w-3xl">
           <ScrollReveal animation="scale-in">
-            <div className="relative rounded-3xl glass-card p-12 text-center overflow-hidden">
-              {/* Background glow */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/20 rounded-full blur-[100px]" />
+            <div className="relative rounded-2xl md:rounded-3xl glass-card p-6 md:p-12 text-center overflow-hidden">
+              {/* Background glow - responsive */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] md:w-[300px] md:h-[300px] lg:w-[400px] lg:h-[400px] bg-primary/20 rounded-full blur-[60px] md:blur-[80px] lg:blur-[100px]" />
 
               <div className="relative">
-                <h2 className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-foreground mb-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-semibold tracking-tight text-foreground mb-4 md:mb-6">
                   Ready to Take Control
                   <br />
                   <span className="text-gradient">of Your Data?</span>
                 </h2>
-                <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
+                <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-10 max-w-xl mx-auto">
                   Join the waitlist for early access to storage that's mathematically
                   breach-proof by design.
                 </p>

@@ -44,10 +44,10 @@ const FAQItem = ({ item, isOpen, onToggle }: {
     <div className="border-b border-border/50 last:border-b-0">
       <button
         onClick={onToggle}
-        className="w-full flex items-start justify-between gap-4 py-6 text-left group"
+        className="w-full flex items-start justify-between gap-3 md:gap-4 py-4 md:py-6 text-left group"
       >
         <span className={cn(
-          "text-base font-medium transition-colors duration-200",
+          "text-sm md:text-base font-medium transition-colors duration-200",
           isOpen ? "text-foreground" : "text-muted-foreground group-hover:text-foreground"
         )}>
           {item.question}
@@ -66,11 +66,11 @@ const FAQItem = ({ item, isOpen, onToggle }: {
       <div
         className={cn(
           "grid transition-all duration-300 ease-out",
-          isOpen ? "grid-rows-[1fr] pb-6" : "grid-rows-[0fr]"
+          isOpen ? "grid-rows-[1fr] pb-4 md:pb-6" : "grid-rows-[0fr]"
         )}
       >
         <div className="overflow-hidden">
-          <p className="text-muted-foreground text-sm leading-relaxed pr-12">
+          <p className="text-muted-foreground text-xs md:text-sm leading-relaxed pr-8 md:pr-12">
             {item.answer}
           </p>
         </div>
@@ -83,11 +83,11 @@ export const FAQ = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-28 px-6">
+    <section id="faq" className="py-16 md:py-28 px-4 md:px-6">
       <div className="container mx-auto max-w-3xl">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-16">
           <ScrollReveal>
-            <h2 className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-foreground">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-semibold tracking-tight text-foreground">
               Frequently Asked{" "}
               <span className="text-gradient">Questions</span>
             </h2>
@@ -95,8 +95,8 @@ export const FAQ = () => {
         </div>
 
         <ScrollReveal delay={200}>
-          <div className="rounded-2xl glass-card p-2 md:p-4">
-            <div className="px-4 md:px-6">
+          <div className="rounded-xl md:rounded-2xl glass-card p-2 md:p-4">
+            <div className="px-3 md:px-6">
               {faqs.map((faq, index) => (
                 <FAQItem
                   key={index}

@@ -23,17 +23,17 @@ const HighlightItem = ({ icon, title, description }: HighlightItemProps) => (
 export const TechHighlights = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 py-8">
-      <HighlightItem 
+      <HighlightItem
         icon={<Shield className="h-5 w-5 text-primary-foreground" />}
         title="Military-Grade Encryption"
         description="Bank-level security with wallet-derived keys"
       />
-      <HighlightItem 
+      <HighlightItem
         icon={<Layers className="h-5 w-5 text-primary-foreground" />}
         title="Solana Powered"
         description="Fast, low-cost blockchain verification"
       />
-      <HighlightItem 
+      <HighlightItem
         icon={<Fingerprint className="h-5 w-5 text-primary-foreground" />}
         title="Zero-Knowledge"
         description="ZK proofs for trustless privacy"

@@ -17,11 +17,12 @@ import {
   Users,
   Shield,
   Loader2,
-  Link2,
   Clock,
   Copy,
   Check,
-  Eye,
+  Lock,
+  ExternalLink,
+  FileKey,
 } from "lucide-react";
 
 interface StepShareProps {
@@ -30,7 +31,7 @@ interface StepShareProps {
   recipientAddress?: string;
 }
 
-type ShareMode = "user" | "link";
+type ShareMode = "internal" | "external";
 type LinkExpiry = "24h" | "7d" | "30d";
 
 export const StepShare = ({
@@ -38,14 +39,15 @@ export const StepShare = ({
   onComplete,
   recipientAddress,
 }: StepShareProps) => {
-  const [shareMode, setShareMode] = useState<ShareMode>("user");
+  const [shareMode, setShareMode] = useState<ShareMode>("internal");
   const [subdomain, setSubdomain] = useState("");
+  const [externalEmail, setExternalEmail] = useState("");
   const [isResolving, setIsResolving] = useState(false);
   const [resolvedAddress, setResolvedAddress] = useState<string | null>(null);
   const [isSharing, setIsSharing] = useState(false);
   const [isShared, setIsShared] = useState(!!recipientAddress);
 
-  // View-Only Link state
+  // External share state
   const [linkExpiry, setLinkExpiry] = useState<LinkExpiry>("7d");
   const [generatedLink, setGeneratedLink] = useState<string | null>(null);
   const [isGeneratingLink, setIsGeneratingLink] = useState(false);
@@ -57,7 +59,12 @@ export const StepShare = ({
 
   // Debounced subdomain resolution
   useEffect(() => {
-    if (!subdomain && shareMode === "user") {
+    if (!subdomain && shareMode === "internal") {
+      setResolvedAddress(null);
+      return;
+    }
+
+    if (shareMode !== "internal") {
       setResolvedAddress(null);
       return;
     }
@@ -88,16 +95,18 @@ export const StepShare = ({
     onComplete(`${recipientSubdomain}.blockdrive.sol`);
   };
 
-  const handleGenerateLink = async () => {
+  const handleShareExternal = async () => {
+    const email = externalEmail || "recipient@example.com";
+    setExternalEmail(email);
     setIsGeneratingLink(true);
 
-    // Simulate link generation
+    // Simulate external share process
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     setGeneratedLink(demoLink);
     setIsGeneratingLink(false);
     setIsShared(true);
-    onComplete(`view-only:${linkExpiry}`);
+    onComplete(`external:${email}`);
   };
 
   const handleCopyLink = () => {
@@ -124,71 +133,37 @@ export const StepShare = ({
     }
   };
 
-  const isViewOnlyMode = shareMode === "link";
+  const isExternalMode = shareMode === "external";
 
   return (
     <DemoLayout
       title="Share Securely"
       description={
-        isViewOnlyMode ? (
-          <>
-            <p>
-              <strong className="text-primary">View-Only Links</strong> let
-              anyone view your file in their browser — no account needed.
-            </p>
-            <div className="space-y-3 mt-4">
-              <div className="flex items-start gap-3">
-                <Eye className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-sm">
-                  <strong className="text-foreground">Browser viewing only</strong> —
-                  file is rendered server-side, never downloaded.
-                </p>
-              </div>
-              <div className="flex items-start gap-3">
-                <Clock className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-sm">
-                  <strong className="text-foreground">Auto-expires</strong> —
-                  link stops working after the set time period.
-                </p>
-              </div>
-              <div className="flex items-start gap-3">
-                <Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-sm">
-                  <strong className="text-foreground">Critical bytes stay secure</strong> —
-                  decryption happens in our secure environment, not on recipient's device.
-                </p>
-              </div>
+        <>
+          <p>
+            BlockDrive offers{" "}
+            <strong className="text-primary">two ways to share</strong> your encrypted files,
+            depending on whether the recipient has a BlockDrive account.
+          </p>
+          <div className="space-y-3 mt-4">
+            <div className="flex items-start gap-3">
+              <FileKey className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <p className="text-sm">
+                <strong className="text-foreground">BlockDrive users</strong> —
+                maintains Programmed Incompleteness architecture. Files stay
+                mathematically incomplete and breach-proof.
+              </p>
             </div>
-          </>
-        ) : (
-          <>
-            <p>
-              When you share with a BlockDrive user, we create{" "}
-              <strong className="text-primary">
-                recipient-specific critical bytes
-              </strong>
-              . This is key to understanding our security model.
-            </p>
-            <div className="space-y-3 mt-4">
-              <div className="flex items-start gap-3">
-                <Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-sm">
-                  <strong className="text-foreground">Your access</strong> uses
-                  your own critical bytes — completely separate from the
-                  recipient's.
-                </p>
-              </div>
-              <div className="flex items-start gap-3">
-                <Users className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-sm">
-                  <strong className="text-foreground">Recipient's access</strong>{" "}
-                  uses newly created bytes — you can revoke them without
-                  affecting your own access.
-                </p>
-              </div>
+            <div className="flex items-start gap-3">
+              <ExternalLink className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <p className="text-sm">
+                <strong className="text-foreground">External recipients</strong> —
+                file is reconstructed and sent as a traditionally encrypted file
+                they can use like any standard file.
+              </p>
             </div>
-          </>
-        )
+          </div>
+        </>
       }
     >
       <div className="space-y-6">
@@ -201,25 +176,25 @@ export const StepShare = ({
           >
             <TabsList className="grid w-full grid-cols-2 bg-card/50 border border-border/50">
               <TabsTrigger
-                value="user"
+                value="internal"
                 className="gap-2 data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
               >
                 <Users className="h-4 w-4" />
                 <span className="hidden sm:inline">BlockDrive User</span>
-                <span className="sm:hidden">User</span>
+                <span className="sm:hidden">Internal</span>
               </TabsTrigger>
               <TabsTrigger
-                value="link"
+                value="external"
                 className="gap-2 data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
               >
-                <Link2 className="h-4 w-4" />
-                <span className="hidden sm:inline">View-Only Link</span>
-                <span className="sm:hidden">Link</span>
+                <ExternalLink className="h-4 w-4" />
+                <span className="hidden sm:inline">External Recipient</span>
+                <span className="sm:hidden">External</span>
               </TabsTrigger>
             </TabsList>
 
             {/* BlockDrive User Mode */}
-            <TabsContent value="user" className="mt-4">
+            <TabsContent value="internal" className="mt-4">
               <div className="rounded-xl bg-card/30 border border-border/50 p-6 space-y-4 animate-fade-in">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">
@@ -262,11 +237,13 @@ export const StepShare = ({
                     )}
                   </div>
 
-                  <p className="text-xs text-muted-foreground">
-                    Recipient gets full access — can view, download, and store in their vault.
-                    <br />
-                    <span className="text-primary/80">Requires BlockDrive Pro ($9/mo)</span>
-                  </p>
+                  <div className="flex items-start gap-2 p-2 rounded-lg bg-primary/5 border border-primary/20">
+                    <Shield className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <p className="text-xs text-muted-foreground">
+                      File remains <strong className="text-foreground">mathematically incomplete</strong> —
+                      Programmed Incompleteness architecture is preserved.
+                    </p>
+                  </div>
                 </div>
 
                 <Button
@@ -278,7 +255,7 @@ export const StepShare = ({
                   {isSharing ? (
                     <>
                       <Loader2 className="h-4 w-4 animate-spin" />
-                      Creating access...
+                      Sharing securely...
                     </>
                   ) : (
                     <>
@@ -290,11 +267,24 @@ export const StepShare = ({
               </div>
             </TabsContent>
 
-            {/* View-Only Link Mode */}
-            <TabsContent value="link" className="mt-4">
+            {/* External Recipient Mode */}
+            <TabsContent value="external" className="mt-4">
               <div className="rounded-xl bg-card/30 border border-border/50 p-6 space-y-4 animate-fade-in">
                 {!generatedLink ? (
                   <>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-foreground">
+                        Recipient's Email Address
+                      </label>
+                      <Input
+                        type="email"
+                        placeholder="recipient@example.com"
+                        value={externalEmail}
+                        onChange={(e) => setExternalEmail(e.target.value)}
+                        className="text-sm"
+                      />
+                    </div>
+
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-foreground">
                         Link Expiration
@@ -312,30 +302,31 @@ export const StepShare = ({
                           <SelectItem value="30d">30 days</SelectItem>
                         </SelectContent>
                       </Select>
+                    </div>
+
+                    <div className="flex items-start gap-2 p-2 rounded-lg bg-muted/50 border border-border/50">
+                      <Lock className="h-4 w-4 text-muted-foreground mt-0.5 flex-shrink-0" />
                       <p className="text-xs text-muted-foreground">
-                        Anyone with this link can view the file in their browser.
-                        <br />
-                        <span className="text-primary/80">
-                          To download or keep files, recipients need BlockDrive Pro ($9/mo)
-                        </span>
+                        File will be <strong className="text-foreground">reconstructed and traditionally encrypted</strong> —
+                        recipient can download and use like any standard file.
                       </p>
                     </div>
 
                     <Button
                       variant="hero"
                       className="w-full gap-2"
-                      onClick={handleGenerateLink}
+                      onClick={handleShareExternal}
                       disabled={isGeneratingLink}
                     >
                       {isGeneratingLink ? (
                         <>
                           <Loader2 className="h-4 w-4 animate-spin" />
-                          Generating secure link...
+                          Preparing secure download...
                         </>
                       ) : (
                         <>
-                          <Link2 className="h-4 w-4" />
-                          Generate View-Only Link
+                          <Send className="h-4 w-4" />
+                          Send to External Recipient
                         </>
                       )}
                     </Button>
@@ -344,7 +335,7 @@ export const StepShare = ({
                   <div className="space-y-3">
                     <div className="flex items-center gap-2 text-green-500">
                       <Check className="h-4 w-4" />
-                      <span className="text-sm font-medium">Link ready!</span>
+                      <span className="text-sm font-medium">Download link sent!</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Input
@@ -367,7 +358,7 @@ export const StepShare = ({
                     </div>
                     <div className="flex items-center gap-2 text-xs text-muted-foreground">
                       <Clock className="h-3 w-3" />
-                      <span>Expires in {getExpiryLabel(linkExpiry)}</span>
+                      <span>Link expires in {getExpiryLabel(linkExpiry)}</span>
                     </div>
                   </div>
                 )}
@@ -376,38 +367,38 @@ export const StepShare = ({
           </Tabs>
         )}
 
-        {/* Shared confirmation for User mode */}
-        {isShared && !isViewOnlyMode && (
+        {/* Shared confirmation for Internal mode */}
+        {isShared && !isExternalMode && (
           <div className="rounded-xl bg-primary/10 border border-primary/30 p-4 animate-fade-in">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-full bg-primary/20">
-                <Users className="h-4 w-4 text-primary" />
+                <FileKey className="h-4 w-4 text-primary" />
               </div>
               <div>
                 <p className="text-sm font-medium text-foreground">
                   Shared with {subdomain || demoSubdomain}.blockdrive.sol
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  Recipient-specific critical bytes created • Full access granted
+                  Programmed Incompleteness preserved • Breach-proof sharing
                 </p>
               </div>
             </div>
           </div>
         )}
 
-        {/* Shared confirmation for Link mode */}
-        {isShared && isViewOnlyMode && generatedLink && (
+        {/* Shared confirmation for External mode */}
+        {isShared && isExternalMode && generatedLink && (
           <div className="rounded-xl bg-primary/10 border border-primary/30 p-4 animate-fade-in">
             <div className="flex items-center gap-3">
               <div className="p-2 rounded-full bg-primary/20">
-                <Link2 className="h-4 w-4 text-primary" />
+                <ExternalLink className="h-4 w-4 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-foreground">
-                  View-Only link created
+                  Sent to {externalEmail || "recipient@example.com"}
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  Expires in {getExpiryLabel(linkExpiry)} • Browser viewing only
+                  Traditionally encrypted • Download link expires in {getExpiryLabel(linkExpiry)}
                 </p>
               </div>
               <Button
@@ -438,8 +429,8 @@ export const StepShare = ({
             recipientAccess={isShared}
             showRecipient={true}
             fileName={file.name}
-            isViewOnly={isViewOnlyMode}
-            viewOnlyExpiry={isViewOnlyMode ? getExpiryLabel(linkExpiry) : undefined}
+            isViewOnly={isExternalMode}
+            viewOnlyExpiry={isExternalMode ? getExpiryLabel(linkExpiry) : undefined}
           />
         </div>
       </div>

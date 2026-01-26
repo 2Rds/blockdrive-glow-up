@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Check, X, User, Users, Eye, Clock } from "lucide-react";
+import { Check, X, User, Users, ExternalLink, Clock, Download } from "lucide-react";
 import { CriticalBytes } from "./CriticalBytes";
 import { FileBlock } from "./FileBlock";
 
@@ -10,7 +10,7 @@ interface AccessPathProps {
   showRecipient?: boolean;
   fileName?: string;
   className?: string;
-  isViewOnly?: boolean;
+  isViewOnly?: boolean; // Now used for external sharing
   viewOnlyExpiry?: string;
 }
 
@@ -21,8 +21,8 @@ export const AccessPath = ({
   showRecipient = true,
   fileName = "confidential-report.pdf",
   className,
-  isViewOnly = false,
-  viewOnlyExpiry,
+  isViewOnly: isExternal = false, // Renamed internally
+  viewOnlyExpiry: externalExpiry,
 }: AccessPathProps) => {
   return (
     <div className={cn("space-y-6", className)}>
@@ -56,7 +56,7 @@ export const AccessPath = ({
             className="transition-all duration-500"
             opacity={ownerAccess ? 1 : 0.3}
           />
-          {/* Recipient path - dashed for view-only, solid for full access */}
+          {/* Recipient path - dashed for external, solid for internal */}
           {showRecipient && (
             <line
               x1="75%"
@@ -66,14 +66,14 @@ export const AccessPath = ({
               stroke={
                 recipientRevoked
                   ? "hsl(var(--destructive))"
-                  : isViewOnly
+                  : isExternal
                   ? "hsl(var(--muted-foreground))"
                   : "hsl(var(--primary))"
               }
               strokeWidth="2"
               strokeDasharray={
-                isViewOnly
-                  ? "6 4" // Always dashed for view-only
+                isExternal
+                  ? "6 4" // Dashed for external sharing
                   : recipientAccess && !recipientRevoked
                   ? "none"
                   : "4 4"
@@ -140,13 +140,13 @@ export const AccessPath = ({
                   "p-2 rounded-full transition-colors duration-300",
                   recipientRevoked
                     ? "bg-destructive/20"
-                    : isViewOnly
+                    : isExternal
                     ? "bg-muted"
                     : "bg-secondary"
                 )}
               >
-                {isViewOnly ? (
-                  <Eye
+                {isExternal ? (
+                  <ExternalLink
                     className={cn(
                       "h-4 w-4 transition-colors duration-300",
                       recipientRevoked
@@ -166,29 +166,29 @@ export const AccessPath = ({
                 )}
               </div>
               <span className="text-sm font-medium text-foreground">
-                {isViewOnly ? "Viewer" : "Recipient"}
+                {isExternal ? "External" : "BlockDrive User"}
               </span>
             </div>
 
-            {/* Different visualization for view-only vs full access */}
-            {isViewOnly ? (
+            {/* Different visualization for external vs internal sharing */}
+            {isExternal ? (
               <div className="flex flex-col items-center gap-2">
                 <div className="px-3 py-2 rounded-lg bg-muted/50 border border-border/50 text-center">
                   <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground">
-                    <Eye className="h-3 w-3" />
-                    <span>Browser View Only</span>
+                    <Download className="h-3 w-3" />
+                    <span>Traditional Encryption</span>
                   </div>
-                  {viewOnlyExpiry && (
+                  {externalExpiry && (
                     <div className="flex items-center justify-center gap-1 text-xs text-muted-foreground/70 mt-1">
                       <Clock className="h-3 w-3" />
-                      <span>Expires: {viewOnlyExpiry}</span>
+                      <span>Expires: {externalExpiry}</span>
                     </div>
                   )}
                 </div>
               </div>
             ) : (
               <CriticalBytes
-                label="Recipient's Bytes"
+                label="Critical Bytes"
                 isActive={recipientAccess}
                 isRevoked={recipientRevoked}
                 size="sm"
@@ -201,7 +201,7 @@ export const AccessPath = ({
                 recipientRevoked
                   ? "bg-destructive/20 text-destructive"
                   : recipientAccess
-                  ? isViewOnly
+                  ? isExternal
                     ? "bg-muted text-muted-foreground"
                     : "bg-green-500/20 text-green-400"
                   : "bg-muted text-muted-foreground"
@@ -210,18 +210,18 @@ export const AccessPath = ({
               {recipientRevoked ? (
                 <>
                   <X className="h-3 w-3" />
-                  {isViewOnly ? "Expired" : "Revoked"}
+                  {isExternal ? "Expired" : "Revoked"}
                 </>
               ) : recipientAccess ? (
-                isViewOnly ? (
+                isExternal ? (
                   <>
-                    <Eye className="h-3 w-3" />
-                    View Only
+                    <Download className="h-3 w-3" />
+                    Download Access
                   </>
                 ) : (
                   <>
                     <Check className="h-3 w-3" />
-                    Full Access
+                    Breach-Proof Access
                   </>
                 )
               ) : (

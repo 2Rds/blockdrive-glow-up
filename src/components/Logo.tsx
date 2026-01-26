@@ -1,16 +1,12 @@
-import { Database } from "lucide-react";
+import { Shield } from "lucide-react";
 
 export const Logo = () => {
   return (
-    <div className="flex items-center gap-2">
-      <div className="relative">
-        <div className="p-2 rounded-lg bg-gradient-primary">
-          <Database className="h-6 w-6 text-primary-foreground" />
-        </div>
-        {/* Subtle glow behind logo */}
-        <div className="absolute inset-0 rounded-lg bg-primary/30 blur-lg -z-10" />
+    <div className="flex items-center gap-3">
+      <div className="w-9 h-9 rounded-xl bg-gradient-primary flex items-center justify-center shadow-soft">
+        <Shield className="w-[18px] h-[18px] text-primary-foreground" strokeWidth={2.5} />
       </div>
-      <span className="text-xl font-display font-bold text-foreground">
+      <span className="text-xl font-display font-semibold tracking-tight text-foreground">
         BlockDrive
       </span>
     </div>

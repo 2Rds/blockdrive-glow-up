@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/hooks/use-toast";
-import { ArrowRight, Loader2, ChevronRight, Check, Building2, User, Briefcase } from "lucide-react";
+import { ArrowRight, Loader2, ChevronRight, Check, Building2, User } from "lucide-react";
 import { useABTest } from "@/contexts/ABTestContext";
 import { z } from "zod";
 import {
@@ -52,7 +52,7 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
 
   const submitToWaitlist = async (data: Record<string, unknown>) => {
     const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-    
+
     const response = await fetch(`${supabaseUrl}/functions/v1/waitlist-signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -69,7 +69,7 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
 
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const validation = emailSchema.safeParse(email);
     if (!validation.success) {
       toast({
@@ -81,11 +81,11 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
     }
 
     setIsLoading(true);
-    
+
     try {
       toast({
-        title: "You're on the list! 🎉",
-        description: "One more step - tell us how you'll use BlockDrive.",
+        title: "Welcome aboard",
+        description: "One more step — tell us how you'll use BlockDrive.",
       });
       setStep("customer-type");
     } finally {
@@ -95,7 +95,7 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
 
   const handleOptionalSubmit = async (skip: boolean = false) => {
     setIsLoading(true);
-    
+
     try {
       const signupData: Record<string, unknown> = {
         email: email.trim(),
@@ -117,23 +117,16 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
       await submitToWaitlist(signupData);
 
       setStep("success");
-      
-      if (!skip && (name.trim() || company.trim() || companySize || useCase)) {
-        toast({
-          title: "Profile complete! ✨",
-          description: "You're all set. We'll be in touch soon!",
-        });
-      } else {
-        toast({
-          title: "You're all set!",
-          description: "We'll notify you when BlockDrive is ready.",
-        });
-      }
+
+      toast({
+        title: "You're on the list",
+        description: "We'll be in touch when BlockDrive is ready.",
+      });
     } catch (error) {
       console.error("Waitlist signup error:", error);
       toast({
         title: "Something went wrong",
-        description: "Please try again later.",
+        description: "Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -166,23 +159,22 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="h-14 px-5 bg-secondary/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary focus:ring-primary/20 rounded-xl"
+            className="h-12 px-4 bg-secondary/60 border-border/60 rounded-xl text-foreground placeholder:text-muted-foreground"
             disabled={isLoading}
           />
         </div>
-        <Button 
-          type="submit" 
-          variant="hero" 
-          size="xl"
+        <Button
+          type="submit"
           disabled={isLoading}
-          className="group"
+          size="lg"
+          className="h-12 px-6 group"
         >
           {isLoading ? (
             <Loader2 className="h-5 w-5 animate-spin" />
           ) : (
             <>
-              Join Waitlist
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              Get Early Access
+              <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-0.5" />
             </>
           )}
         </Button>
@@ -193,30 +185,28 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
   // Customer type selection step
   if (step === "customer-type") {
     return (
-      <div className="w-full max-w-md space-y-4 animate-fade-in">
-        <div className="text-center mb-4">
-          <p className="text-sm text-muted-foreground">
-            How will you use BlockDrive?
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-2 gap-3">
+      <div className="w-full max-w-md space-y-6 animate-fade-up">
+        <p className="text-muted-foreground text-center text-sm">
+          How will you use BlockDrive?
+        </p>
+
+        <div className="grid grid-cols-2 gap-4">
           <button
             type="button"
             onClick={() => handleCustomerTypeSelect("personal")}
             className={cn(
-              "flex flex-col items-center gap-3 p-6 rounded-xl border-2 transition-all duration-200",
-              "bg-secondary/30 border-border/50 hover:border-primary/50 hover:bg-secondary/50",
+              "group flex flex-col items-center gap-3 p-6 rounded-xl border transition-all duration-300",
+              "bg-card/50 border-border/50 hover:border-primary/30 hover:bg-card/80",
               "focus:outline-none focus:ring-2 focus:ring-primary/20"
             )}
           >
-            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-              <User className="h-6 w-6 text-primary" />
+            <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center group-hover:glow-primary transition-all duration-300">
+              <User className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors duration-300" />
             </div>
             <div className="text-center">
-              <h4 className="font-medium text-foreground mb-1">Personal</h4>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Secure my personal files & documents
+              <h4 className="font-display font-semibold text-foreground text-sm">Personal</h4>
+              <p className="text-xs text-muted-foreground mt-1">
+                For individual use
               </p>
             </div>
           </button>
@@ -225,18 +215,18 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
             type="button"
             onClick={() => handleCustomerTypeSelect("business")}
             className={cn(
-              "flex flex-col items-center gap-3 p-6 rounded-xl border-2 transition-all duration-200",
-              "bg-secondary/30 border-border/50 hover:border-primary/50 hover:bg-secondary/50",
-              "focus:outline-none focus:ring-2 focus:ring-primary/20"
+              "group flex flex-col items-center gap-3 p-6 rounded-xl border transition-all duration-300",
+              "bg-card/50 border-border/50 hover:border-accent/30 hover:bg-card/80",
+              "focus:outline-none focus:ring-2 focus:ring-accent/20"
             )}
           >
-            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-              <Building2 className="h-6 w-6 text-primary" />
+            <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center group-hover:glow-accent transition-all duration-300">
+              <Building2 className="h-5 w-5 text-muted-foreground group-hover:text-accent transition-colors duration-300" />
             </div>
             <div className="text-center">
-              <h4 className="font-medium text-foreground mb-1">Business</h4>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                Secure storage for my team or clients
+              <h4 className="font-display font-semibold text-foreground text-sm">Business</h4>
+              <p className="text-xs text-muted-foreground mt-1">
+                For teams & companies
               </p>
             </div>
           </button>
@@ -245,54 +235,39 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
     );
   }
 
-  // Optional fields step (contextual based on customer type)
+  // Optional fields step
   if (step === "optional") {
     return (
-      <div className="w-full max-w-md space-y-4 animate-fade-in">
-        <div className="text-center mb-4">
-          <p className="text-sm text-muted-foreground">
-            {customerType === "business" 
-              ? "Help us tailor your experience (optional)"
-              : "One last thing... (optional)"}
-          </p>
-        </div>
-        
+      <div className="w-full max-w-md space-y-5 animate-fade-up">
+        <p className="text-muted-foreground text-center text-sm">
+          {customerType === "business" ? "Tell us about your company" : "Almost there"}
+          <span className="text-muted-foreground/50"> (optional)</span>
+        </p>
+
         <div className="space-y-3">
-          <div className="relative">
-            <User className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Your name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="h-12 pl-11 bg-secondary/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary rounded-xl"
-              disabled={isLoading}
-            />
-          </div>
+          <Input
+            type="text"
+            placeholder="Your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="h-12 px-4 bg-secondary/60 border-border/60 rounded-xl text-foreground placeholder:text-muted-foreground"
+            disabled={isLoading}
+          />
 
           {customerType === "business" && (
             <>
-              <div className="relative">
-                <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  type="text"
-                  placeholder="Company name"
-                  value={company}
-                  onChange={(e) => setCompany(e.target.value)}
-                  className="h-12 pl-11 bg-secondary/50 border-border/50 text-foreground placeholder:text-muted-foreground focus:border-primary rounded-xl"
-                  disabled={isLoading}
-                />
-              </div>
+              <Input
+                type="text"
+                placeholder="Company name"
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+                className="h-12 px-4 bg-secondary/60 border-border/60 rounded-xl text-foreground placeholder:text-muted-foreground"
+                disabled={isLoading}
+              />
 
               <Select value={companySize} onValueChange={setCompanySize} disabled={isLoading}>
-                <SelectTrigger className={cn(
-                  "h-12 bg-secondary/50 border-border/50 text-foreground rounded-xl",
-                  !companySize && "text-muted-foreground"
-                )}>
-                  <div className="flex items-center gap-3">
-                    <Briefcase className="h-4 w-4 text-muted-foreground" />
-                    <SelectValue placeholder="Company size" />
-                  </div>
+                <SelectTrigger className="h-12 px-4 bg-secondary/60 border-border/60 rounded-xl text-foreground">
+                  <SelectValue placeholder="Company size" />
                 </SelectTrigger>
                 <SelectContent>
                   {COMPANY_SIZES.map((size) => (
@@ -304,10 +279,7 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
               </Select>
 
               <Select value={useCase} onValueChange={setUseCase} disabled={isLoading}>
-                <SelectTrigger className={cn(
-                  "h-12 bg-secondary/50 border-border/50 text-foreground rounded-xl",
-                  !useCase && "text-muted-foreground"
-                )}>
+                <SelectTrigger className="h-12 px-4 bg-secondary/60 border-border/60 rounded-xl text-foreground">
                   <SelectValue placeholder="Primary use case" />
                 </SelectTrigger>
                 <SelectContent>
@@ -322,19 +294,18 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
           )}
         </div>
 
-        <div className="flex gap-3 pt-2">
+        <div className="flex gap-3">
           <Button
             type="button"
             variant="ghost"
             onClick={() => handleOptionalSubmit(true)}
             disabled={isLoading}
-            className="flex-1 h-12 text-muted-foreground hover:text-foreground"
+            className="flex-1 h-12 rounded-xl text-muted-foreground hover:text-foreground"
           >
-            Skip
+            Skip for now
           </Button>
           <Button
             type="button"
-            variant="hero"
             onClick={() => handleOptionalSubmit(false)}
             disabled={isLoading}
             className="flex-1 h-12 group"
@@ -343,8 +314,8 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
               <Loader2 className="h-5 w-5 animate-spin" />
             ) : (
               <>
-                Complete
-                <ChevronRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                Continue
+                <ChevronRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-0.5" />
               </>
             )}
           </Button>
@@ -355,24 +326,23 @@ export const WaitlistForm = ({ source = "hero" }: WaitlistFormProps) => {
 
   // Success step
   return (
-    <div className="w-full max-w-md text-center space-y-4 animate-fade-in">
-      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 text-primary mb-2">
-        <Check className="h-8 w-8" />
+    <div className="w-full max-w-md text-center space-y-5 animate-fade-up">
+      <div className="w-16 h-16 rounded-full bg-gradient-primary flex items-center justify-center mx-auto">
+        <Check className="h-8 w-8 text-primary-foreground" />
       </div>
       <div>
-        <h3 className="text-lg font-semibold text-foreground mb-1">You're all set!</h3>
-        <p className="text-sm text-muted-foreground">
+        <h3 className="text-xl font-display font-semibold text-foreground mb-2">You're on the list</h3>
+        <p className="text-muted-foreground text-sm">
           We'll notify you when BlockDrive is ready for early access.
         </p>
       </div>
-      <Button
+      <button
         type="button"
-        variant="ghost"
         onClick={resetForm}
-        className="text-sm text-muted-foreground hover:text-foreground"
+        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
       >
         Add another email
-      </Button>
+      </button>
     </div>
   );
 };

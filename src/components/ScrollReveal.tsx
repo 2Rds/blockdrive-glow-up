@@ -9,7 +9,6 @@ interface ScrollRevealProps {
   animation?: AnimationType;
   delay?: number;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
 }
 
 const animationClasses: Record<AnimationType, string> = {
@@ -23,13 +22,12 @@ export const ScrollReveal = ({
   animation = "fade-up",
   delay = 0,
   className,
-  as: Component = "div",
 }: ScrollRevealProps) => {
   const { ref, isVisible } = useScrollAnimation();
 
   return (
-    <Component
-      ref={ref as React.RefObject<HTMLDivElement>}
+    <div
+      ref={ref}
       className={cn(
         animationClasses[animation],
         isVisible && "is-visible",
@@ -38,7 +36,7 @@ export const ScrollReveal = ({
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
-    </Component>
+    </div>
   );
 };
 

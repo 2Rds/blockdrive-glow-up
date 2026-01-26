@@ -1,6 +1,6 @@
 import { DemoLayout } from "../DemoLayout";
 import { WalletButton } from "../WalletButton";
-import { Globe, Zap, Link2, Shield } from "lucide-react";
+import { Mail, Smartphone, KeyRound, ShieldCheck } from "lucide-react";
 
 interface StepWalletProps {
   onComplete: (address: string) => void;
@@ -10,49 +10,52 @@ interface StepWalletProps {
 export const StepWallet = ({ onComplete, walletAddress }: StepWalletProps) => {
   return (
     <DemoLayout
-      title="Choose Your Username"
+      title="Sign Up Like Web2"
       description={
         <>
           <p>
-            When you sign up, you choose a <strong className="text-foreground">username</strong> and BlockDrive automatically 
-            registers your <strong className="text-primary">username.blockdrive.sol</strong> subdomain on the Solana Name Service.
+            BlockDrive uses <strong className="text-primary">Crossmint</strong> — the enterprise leader in embedded wallets — to give you
+            a familiar sign-up experience with powerful Web3 security underneath.
           </p>
           <div className="space-y-3 pt-4">
             <div className="flex items-start gap-3">
-              <Globe className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <Mail className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
               <p className="text-sm">
-                <strong className="text-foreground">Your Web3 Identity:</strong> Your username becomes your permanent, human-readable address on Solana
+                <strong className="text-foreground">Email or Phone Login:</strong> Sign in the way you're used to — no browser extensions or crypto wallets required
               </p>
             </div>
             <div className="flex items-start gap-3">
-              <Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <KeyRound className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
               <p className="text-sm">
-                <strong className="text-foreground">Embedded Wallet Created:</strong> An invisible Solana wallet is generated — no extensions or seed phrases
+                <strong className="text-foreground">No Seed Phrases:</strong> Crossmint's smart wallet handles key management invisibly — nothing to write down or lose
               </p>
             </div>
             <div className="flex items-start gap-3">
-              <Link2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <ShieldCheck className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
               <p className="text-sm">
-                <strong className="text-foreground">Automatic Reverse Resolution:</strong> Your subdomain links to your wallet, so others can find you by name
+                <strong className="text-foreground">Built-In Recovery:</strong> Lost access? Recover via email, phone, or passkey — all enforced onchain
               </p>
             </div>
             <div className="flex items-start gap-3">
-              <Zap className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <Smartphone className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
               <p className="text-sm">
-                <strong className="text-foreground">Gasless Registration:</strong> BlockDrive covers all on-chain costs — you just pick a username
+                <strong className="text-foreground">Passkey Support:</strong> Use biometrics like Face ID or fingerprint for seamless, secure authentication
               </p>
             </div>
           </div>
+          <p className="text-xs text-muted-foreground/70 pt-4">
+            Powered by Crossmint's enterprise wallet infrastructure
+          </p>
         </>
       }
     >
       <div className="rounded-2xl bg-card/30 border border-border/50 backdrop-blur-sm p-8 space-y-6">
         <div className="text-center space-y-2">
           <h3 className="text-lg font-display font-semibold text-foreground">
-            Simulate Account Creation
+            Create Your Account
           </h3>
           <p className="text-sm text-muted-foreground">
-            Enter a username to create your blockdrive.sol identity
+            Enter a username to get your blockdrive.sol identity
           </p>
         </div>
 
@@ -61,6 +64,12 @@ export const StepWallet = ({ onComplete, walletAddress }: StepWalletProps) => {
           isConnected={!!walletAddress}
           address={walletAddress}
         />
+
+        {/* Crossmint badge */}
+        <div className="flex items-center justify-center gap-2 pt-2">
+          <span className="text-xs text-muted-foreground/60">Wallets by</span>
+          <span className="text-xs font-medium text-muted-foreground">Crossmint</span>
+        </div>
       </div>
     </DemoLayout>
   );

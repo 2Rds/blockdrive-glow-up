@@ -4,7 +4,10 @@ import { Logo } from "@/components/Logo";
 import { WaitlistForm } from "@/components/WaitlistForm";
 import { FeatureCard } from "@/components/FeatureCard";
 import { TechHighlights } from "@/components/StatsCounter";
+import { HeroAnimation } from "@/components/HeroAnimation";
+import { FAQ } from "@/components/FAQ";
 import { Button } from "@/components/ui/button";
+import { ScrollReveal, ScrollRevealGrid } from "@/components/ScrollReveal";
 import { Shield, Zap, Lock, Globe, KeyRound, Wallet, FileKey, Unplug, Play, ArrowRight } from "lucide-react";
 
 const Index = () => {
@@ -55,9 +58,9 @@ const Index = () => {
 
           {/* Main Headline */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-semibold tracking-tight text-foreground mb-8 animate-fade-in leading-[1.1]" style={{ animationDelay: '100ms' }}>
-            The future of
+            Cloud Storage for
             <br />
-            <span className="text-gradient">secure cloud storage</span>
+            <span className="text-gradient">the New Internet</span>
           </h1>
 
           {/* Subheadline */}
@@ -100,12 +103,23 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Hero Animation - Visual demonstration */}
+      <section className="py-8 px-6 -mt-12">
+        <div className="container mx-auto max-w-4xl">
+          <ScrollReveal animation="fade-in">
+            <HeroAnimation />
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* Tech Highlights */}
       <section className="py-16 px-6">
         <div className="container mx-auto max-w-4xl">
-          <div className="rounded-2xl bg-card/30 border border-border/50 backdrop-blur-sm p-8">
-            <TechHighlights />
-          </div>
+          <ScrollReveal animation="scale-in">
+            <div className="rounded-2xl glass-card p-8">
+              <TechHighlights />
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -113,55 +127,55 @@ const Index = () => {
       <section id="features" className="py-28 px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4 animate-fade-up">Features</p>
-            <h2 className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-foreground mb-6 animate-fade-up delay-100">
-              Enterprise security,
-              <br />
-              <span className="text-gradient">redefined</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-up delay-200">
-              Every feature designed for true data ownership and uncompromising privacy.
-            </p>
+            <ScrollReveal>
+              <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4">Features</p>
+            </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <h2 className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-foreground mb-6">
+                Data Security,
+                <br />
+                <span className="text-gradient">Redefined</span>
+              </h2>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Every feature designed for true data ownership and uncompromising privacy.
+              </p>
+            </ScrollReveal>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ScrollRevealGrid className="grid md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={100}>
             <FeatureCard
               icon={FileKey}
               title="Programmed Incompleteness"
               description="Files are mathematically incomplete without critical bytes. Even breached data remains unreadable forever."
-              delay={0}
             />
             <FeatureCard
               icon={Wallet}
-              title="Embedded Wallet"
-              description="Seamless authentication with no extensions or gas fees. Your wallet is built-in and invisible."
-              delay={100}
+              title="Crossmint Embedded Wallet"
+              description="Sign in with email or phone — no extensions, seed phrases, or crypto knowledge needed. Web2 UX with Web3 security."
             />
             <FeatureCard
               icon={Shield}
               title="Privacy Proofs"
               description="Prove file ownership without revealing contents. Complete privacy by cryptographic design."
-              delay={200}
             />
             <FeatureCard
               icon={Zap}
               title="Blazing Fast Access"
               description="Retrieve and reconstruct your files instantly. No slow decryption chains or network bottlenecks."
-              delay={300}
             />
             <FeatureCard
               icon={KeyRound}
               title="Wallet-Derived Keys"
               description="Encryption keys derived from your wallet. Your data never touches servers unencrypted."
-              delay={400}
             />
             <FeatureCard
               icon={Unplug}
               title="On-Chain Audit"
               description="Immutable file registry on Solana. Every access is permanently and transparently recorded."
-              delay={500}
             />
-          </div>
+          </ScrollRevealGrid>
         </div>
       </section>
 
@@ -169,12 +183,16 @@ const Index = () => {
       <section id="how-it-works" className="py-28 px-6">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-16">
-            <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4 animate-fade-up">How It Works</p>
-            <h2 className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-foreground mb-6 animate-fade-up delay-100">
-              Three steps to
-              <br />
-              <span className="text-gradient">breach-proof storage</span>
-            </h2>
+            <ScrollReveal>
+              <p className="text-sm text-muted-foreground uppercase tracking-wider mb-4">How It Works</p>
+            </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <h2 className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-foreground mb-6">
+                Three Steps to
+                <br />
+                <span className="text-gradient">Breach-Proof Storage</span>
+              </h2>
+            </ScrollReveal>
           </div>
 
           <div className="space-y-6">
@@ -195,59 +213,62 @@ const Index = () => {
                 desc: "When you need your files, both pieces are fetched and recombined client-side. Only your wallet can decrypt — no one else, not even BlockDrive, can access your data.",
               },
             ].map((step, index) => (
-              <div
-                key={step.num}
-                className="group flex gap-5 items-start p-6 rounded-2xl bg-card/50 border border-border/50 hover:border-primary/30 hover:bg-card/60 transition-all duration-300 animate-fade-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center text-lg font-display font-semibold text-primary-foreground">
-                  {step.num}
+              <ScrollReveal key={step.num} delay={index * 100}>
+                <div className="group flex gap-5 items-start p-6 rounded-2xl glass-card glass-card-hover glow-hover transition-all duration-300">
+                  <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center text-lg font-display font-semibold text-primary-foreground shadow-lg shadow-primary/20">
+                    {step.num}
+                  </div>
+                  <div className="pt-1">
+                    <h3 className="text-xl font-display font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                      {step.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
                 </div>
-                <div className="pt-1">
-                  <h3 className="text-xl font-display font-semibold text-foreground mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <FAQ />
+
       {/* CTA Section */}
       <section className="py-28 px-6">
         <div className="container mx-auto max-w-3xl">
-          <div className="relative rounded-3xl bg-gradient-to-br from-card to-secondary/50 border border-border/50 p-12 text-center overflow-hidden">
-            {/* Background glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/20 rounded-full blur-[100px]" />
+          <ScrollReveal animation="scale-in">
+            <div className="relative rounded-3xl glass-card p-12 text-center overflow-hidden">
+              {/* Background glow */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/20 rounded-full blur-[100px]" />
 
-            <div className="relative">
-              <h2 className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-foreground mb-6">
-                Ready to take control
-                <br />
-                <span className="text-gradient">of your data?</span>
-              </h2>
-              <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
-                Join the waitlist for early access to storage that's mathematically
-                breach-proof by design.
-              </p>
+              <div className="relative">
+                <h2 className="text-4xl md:text-5xl font-display font-semibold tracking-tight text-foreground mb-6">
+                  Ready to Take Control
+                  <br />
+                  <span className="text-gradient">of Your Data?</span>
+                </h2>
+                <p className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto">
+                  Join the waitlist for early access to storage that's mathematically
+                  breach-proof by design.
+                </p>
 
-              <div className="flex justify-center mb-8">
-                <WaitlistForm source="cta" />
+                <div className="flex justify-center mb-8">
+                  <WaitlistForm source="cta" />
+                </div>
+
+                <Link to="/demo">
+                  <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
+                    <Play className="h-4 w-4 mr-2" />
+                    Or try the interactive demo
+                    <ArrowRight className="h-4 w-4 ml-2" />
+                  </Button>
+                </Link>
               </div>
-
-              <Link to="/demo">
-                <Button variant="ghost" className="text-muted-foreground hover:text-foreground">
-                  <Play className="h-4 w-4 mr-2" />
-                  Or try the interactive demo
-                  <ArrowRight className="h-4 w-4 ml-2" />
-                </Button>
-              </Link>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 

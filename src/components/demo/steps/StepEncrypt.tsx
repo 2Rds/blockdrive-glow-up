@@ -3,7 +3,7 @@ import { DemoLayout } from "../DemoLayout";
 import { FileBlock } from "../FileBlock";
 import { CriticalBytes } from "../CriticalBytes";
 import { cn } from "@/lib/utils";
-import { Lock, ArrowRight, Cloud, Database } from "lucide-react";
+import { Lock, ArrowRight, Cloud, Database, Wallet, Key } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
 interface StepEncryptProps {
@@ -53,46 +53,55 @@ export const StepEncrypt = ({ file, onComplete, isComplete = false }: StepEncryp
       description={
         <>
           <p>
-            This is the core of BlockDrive's security. Your file is encrypted with 
-            <strong className="text-foreground"> AES-256</strong> using a key derived 
-            from your wallet signature.
+            Your <strong className="text-primary">Crossmint wallet</strong> does more than
+            authenticate — it generates your encryption keys. A unique AES-256 key is derived
+            from your wallet's cryptographic signature.
           </p>
           <p className="mt-3">
-            But here's what makes us different: after encryption, we 
-            <strong className="text-primary"> extract 16 critical bytes</strong> and 
-            store them separately. The main encrypted file is now 
+            After encryption, we <strong className="text-primary">extract 16 critical bytes</strong> and
+            store them separately. The main encrypted file becomes
             <strong className="text-foreground"> mathematically incomplete</strong>.
           </p>
           <div className="p-4 mt-4 rounded-lg bg-card/50 border border-border/50">
             <p className="text-sm text-muted-foreground">
-              <strong className="text-foreground">Why this matters:</strong> Even if an 
-              attacker has the encryption key AND the encrypted file, they 
-              <em className="text-primary"> cannot reconstruct your data</em> without 
-              those 16 bytes.
+              <strong className="text-foreground">Why this matters:</strong> Even if an
+              attacker has the encryption key AND the encrypted file, they
+              <em className="text-primary"> cannot reconstruct your data</em> without
+              those 16 bytes. And only your wallet can derive the key.
             </p>
           </div>
         </>
       }
     >
       <div className="space-y-8">
+        {/* Wallet to Key derivation visualization */}
+        <div className="flex items-center justify-center gap-3 p-4 rounded-xl bg-card/30 border border-border/50">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/10 border border-primary/20">
+            <Wallet className="h-4 w-4 text-primary" />
+            <span className="text-xs font-medium text-primary">Your Wallet</span>
+          </div>
+          <ArrowRight className="h-4 w-4 text-muted-foreground" />
+          <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary/50">
+            <Key className="h-4 w-4 text-muted-foreground" />
+            <span className="text-xs font-medium text-muted-foreground">AES-256 Key</span>
+          </div>
+          <ArrowRight className="h-4 w-4 text-muted-foreground" />
+          <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary/50">
+            <Lock className="h-4 w-4 text-muted-foreground" />
+            <span className="text-xs font-medium text-muted-foreground">Encrypted</span>
+          </div>
+        </div>
+
         {/* Progress indicator */}
         {phase !== "complete" && (
           <div className="space-y-3 animate-fade-in">
             <div className="flex items-center justify-between text-sm">
               <span className="text-muted-foreground">
-                {phase === "encrypting" ? "Encrypting..." : "Splitting critical bytes..."}
+                {phase === "encrypting" ? "Deriving key & encrypting..." : "Splitting critical bytes..."}
               </span>
               <span className="text-primary font-mono">{progress}%</span>
             </div>
             <Progress value={progress} className="h-2" />
-            <div className="flex justify-center">
-              <Lock
-                className={cn(
-                  "h-6 w-6 text-primary",
-                  phase === "encrypting" && "animate-spin"
-                )}
-              />
-            </div>
           </div>
         )}
 
@@ -104,7 +113,7 @@ export const StepEncrypt = ({ file, onComplete, isComplete = false }: StepEncryp
           )}
         >
           {/* Original file transforming */}
-          <div className="flex items-center justify-center gap-4 mb-8">
+          <div className="flex items-center justify-center gap-4 mb-6">
             <FileBlock
               fileName={file.name}
               fileSize={file.size}

@@ -1,27 +1,47 @@
 import { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface FeatureCardProps {
   icon: LucideIcon;
   title: string;
   description: string;
   delay?: number;
+  className?: string;
 }
 
-export const FeatureCard = ({ icon: Icon, title, description, delay = 0 }: FeatureCardProps) => {
+export const FeatureCard = ({
+  icon: Icon,
+  title,
+  description,
+  delay = 0,
+  className
+}: FeatureCardProps) => {
   return (
     <div
-      className="group relative p-6 rounded-xl bg-card/40 border border-border/40 backdrop-blur-sm transition-all duration-200 ease-out hover:border-primary/30 hover:bg-card/60 hover:translate-y-[-2px] hover:shadow-lg hover:shadow-primary/5"
-      style={{ animationDelay: `${delay}ms` }}
+      className={cn(
+        "group relative p-6 rounded-2xl",
+        "glass-card glass-card-hover glow-hover",
+        "transition-all duration-300 ease-out",
+        "hover:translate-y-[-4px]",
+        className
+      )}
+      style={{ transitionDelay: `${delay}ms` }}
     >
-      {/* Subtle hover glow effect */}
-      <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/[0.02] to-accent/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      {/* Animated gradient overlay on hover */}
+      <div
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{
+          background: 'linear-gradient(135deg, hsl(var(--primary) / 0.05) 0%, hsl(var(--accent) / 0.03) 100%)'
+        }}
+      />
 
       <div className="relative">
-        <div className="inline-flex p-2.5 rounded-lg bg-primary/10 border border-primary/20 mb-4 transition-colors duration-200 group-hover:bg-primary/15 group-hover:border-primary/30">
-          <Icon className="h-5 w-5 text-primary" />
+        {/* Icon container with glow effect */}
+        <div className="inline-flex p-3 rounded-xl bg-primary/10 border border-primary/20 mb-5 transition-all duration-300 group-hover:bg-primary/15 group-hover:border-primary/40 group-hover:shadow-lg group-hover:shadow-primary/10 icon-glow">
+          <Icon className="h-5 w-5 text-primary transition-transform duration-300 group-hover:scale-110" />
         </div>
 
-        <h3 className="text-lg font-display font-semibold text-foreground mb-2 transition-colors duration-200 group-hover:text-primary/90">
+        <h3 className="text-lg font-display font-semibold text-foreground mb-2.5 transition-colors duration-300 group-hover:text-primary">
           {title}
         </h3>
 

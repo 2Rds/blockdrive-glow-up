@@ -125,7 +125,7 @@ const Index = () => {
             </ScrollReveal>
             <ScrollReveal delay={200}>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Every feature designed for true data ownership and uncompromising privacy.
+                Every feature designed for true data ownership and uncompromising security.
               </p>
             </ScrollReveal>
           </div>

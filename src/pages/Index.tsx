@@ -133,7 +133,7 @@ const Index = () => {
           <ScrollRevealGrid className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6" staggerDelay={100}>
             <FeatureCard icon={FileKey} title="Programmed Incompleteness" description="Files are mathematically incomplete without critical bytes. Even compromised data remains unreadable forever." />
             <FeatureCard icon={Wallet} title="Crossmint Embedded Wallet" description="Sign in with email or phone — no extensions, seed phrases, or crypto knowledge needed. Web2 UX with Web3 security." />
-            <FeatureCard icon={Shield} title="Privacy Proofs" description="Prove file ownership without revealing contents. Complete privacy by cryptographic design." />
+            <FeatureCard icon={Shield} title="Zero Knowledge Proofs" description="Prove file ownership without revealing contents. Complete privacy by cryptographic design." />
             <FeatureCard icon={Zap} title="Blazing Fast Access" description="Retrieve and reconstruct your files instantly. No slow decryption chains or network bottlenecks." />
             <FeatureCard icon={KeyRound} title="Wallet-Derived Keys" description="Encryption keys derived from your wallet. Your data never touches servers unencrypted." />
             <FeatureCard icon={Unplug} title="On-Chain Audit" description="Immutable file registry on Solana. Every access is permanently and transparently recorded." />

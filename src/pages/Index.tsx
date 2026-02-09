@@ -207,8 +207,8 @@ const Index = () => {
                   <span className="text-gradient">of Your Data?</span>
                 </h2>
                 <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-10 max-w-xl mx-auto">
-                  Join the waitlist for early access to storage that's mathematically
-                  breach-proof by design.
+                  Join the waitlist for early access to cloud storage that's mathematically
+                  incorruptible by design.
                 </p>
 
                 <div className="flex justify-center mb-8">

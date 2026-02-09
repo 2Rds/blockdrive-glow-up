@@ -8,10 +8,8 @@ import { FAQ } from "@/components/FAQ";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal, ScrollRevealGrid } from "@/components/ScrollReveal";
 import { Shield, Zap, Lock, Globe, KeyRound, Wallet, FileKey, Unplug, Play, ArrowRight } from "lucide-react";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen relative">
+  return <div className="min-h-screen relative">
       <AnimatedBackground />
 
       {/* Header */}
@@ -19,16 +17,10 @@ const Index = () => {
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <Logo />
           <nav className="hidden md:flex items-center gap-8">
-            <a
-              href="#features"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-            >
+            <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
               Features
             </a>
-            <a
-              href="#how-it-works"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-            >
+            <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
               How It Works
             </a>
             <Link to="/demo">
@@ -56,25 +48,32 @@ const Index = () => {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-semibold tracking-tight text-foreground mb-6 md:mb-8 animate-fade-in leading-[1.1]" style={{ animationDelay: '100ms' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-semibold tracking-tight text-foreground mb-6 md:mb-8 animate-fade-in leading-[1.1]" style={{
+          animationDelay: '100ms'
+        }}>
             Cloud Storage for
             <br />
             <span className="text-gradient">the New Internet</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed animate-fade-in" style={{ animationDelay: '200ms' }}>
-            BlockDrive uses Programmed Incompleteness to make your files mathematically
-            unreadable — even if breached. True ownership. Zero trust required.
+          <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed animate-fade-in" style={{
+          animationDelay: '200ms'
+        }}>
+            BlockDrive makes your files mathematically unreadable — even if our system is breached. True Privacy. True ownership. Zero trust required.
           </p>
 
           {/* Waitlist Form */}
-          <div className="flex justify-center mb-8 animate-fade-in" style={{ animationDelay: '300ms' }}>
+          <div className="flex justify-center mb-8 animate-fade-in" style={{
+          animationDelay: '300ms'
+        }}>
             <WaitlistForm />
           </div>
 
           {/* Trust badges */}
-          <div className="flex flex-wrap justify-center gap-4 pt-4 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: '400ms' }}>
+          <div className="flex flex-wrap justify-center gap-4 pt-4 text-sm text-muted-foreground animate-fade-in" style={{
+          animationDelay: '400ms'
+        }}>
             <div className="flex items-center gap-2">
               <Shield className="h-4 w-4 text-primary" />
               <span>Privacy-First Design</span>
@@ -90,11 +89,10 @@ const Index = () => {
           </div>
 
           {/* Demo link */}
-          <div className="animate-fade-in pt-8" style={{ animationDelay: '500ms' }}>
-            <Link
-              to="/demo"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-            >
+          <div className="animate-fade-in pt-8" style={{
+          animationDelay: '500ms'
+        }}>
+            <Link to="/demo" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
               <Play className="h-4 w-4" />
               Watch how it works
             </Link>
@@ -133,36 +131,12 @@ const Index = () => {
           </div>
 
           <ScrollRevealGrid className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6" staggerDelay={100}>
-            <FeatureCard
-              icon={FileKey}
-              title="Programmed Incompleteness"
-              description="Files are mathematically incomplete without critical bytes. Even breached data remains unreadable forever."
-            />
-            <FeatureCard
-              icon={Wallet}
-              title="Crossmint Embedded Wallet"
-              description="Sign in with email or phone — no extensions, seed phrases, or crypto knowledge needed. Web2 UX with Web3 security."
-            />
-            <FeatureCard
-              icon={Shield}
-              title="Privacy Proofs"
-              description="Prove file ownership without revealing contents. Complete privacy by cryptographic design."
-            />
-            <FeatureCard
-              icon={Zap}
-              title="Blazing Fast Access"
-              description="Retrieve and reconstruct your files instantly. No slow decryption chains or network bottlenecks."
-            />
-            <FeatureCard
-              icon={KeyRound}
-              title="Wallet-Derived Keys"
-              description="Encryption keys derived from your wallet. Your data never touches servers unencrypted."
-            />
-            <FeatureCard
-              icon={Unplug}
-              title="On-Chain Audit"
-              description="Immutable file registry on Solana. Every access is permanently and transparently recorded."
-            />
+            <FeatureCard icon={FileKey} title="Programmed Incompleteness" description="Files are mathematically incomplete without critical bytes. Even breached data remains unreadable forever." />
+            <FeatureCard icon={Wallet} title="Crossmint Embedded Wallet" description="Sign in with email or phone — no extensions, seed phrases, or crypto knowledge needed. Web2 UX with Web3 security." />
+            <FeatureCard icon={Shield} title="Privacy Proofs" description="Prove file ownership without revealing contents. Complete privacy by cryptographic design." />
+            <FeatureCard icon={Zap} title="Blazing Fast Access" description="Retrieve and reconstruct your files instantly. No slow decryption chains or network bottlenecks." />
+            <FeatureCard icon={KeyRound} title="Wallet-Derived Keys" description="Encryption keys derived from your wallet. Your data never touches servers unencrypted." />
+            <FeatureCard icon={Unplug} title="On-Chain Audit" description="Immutable file registry on Solana. Every access is permanently and transparently recorded." />
           </ScrollRevealGrid>
         </div>
       </section>
@@ -184,24 +158,19 @@ const Index = () => {
           </div>
 
           <div className="space-y-3 md:space-y-6">
-            {[
-              {
-                num: "01",
-                title: "Encrypt & Split",
-                desc: "Your file is encrypted with AES-256-GCM using a key derived from your wallet. Critical bytes are extracted and stored separately — the main file becomes mathematically incomplete.",
-              },
-              {
-                num: "02",
-                title: "Distributed Storage",
-                desc: "Encrypted data goes to enterprise-grade IPFS. The critical bytes are stored separately on Cloudflare R2, protected by zero-knowledge proofs and Solana-verified access controls.",
-              },
-              {
-                num: "03",
-                title: "Secure Retrieval",
-                desc: "When you need your files, both pieces are fetched and recombined client-side. Only your wallet can decrypt — no one else, not even BlockDrive, can access your data.",
-              },
-            ].map((step, index) => (
-              <ScrollReveal key={step.num} delay={index * 100}>
+            {[{
+            num: "01",
+            title: "Encrypt & Split",
+            desc: "Your file is encrypted with AES-256-GCM using a key derived from your wallet. Critical bytes are extracted and stored separately — the main file becomes mathematically incomplete."
+          }, {
+            num: "02",
+            title: "Distributed Storage",
+            desc: "Encrypted data goes to enterprise-grade IPFS. The critical bytes are stored separately on Cloudflare R2, protected by zero-knowledge proofs and Solana-verified access controls."
+          }, {
+            num: "03",
+            title: "Secure Retrieval",
+            desc: "When you need your files, both pieces are fetched and recombined client-side. Only your wallet can decrypt — no one else, not even BlockDrive, can access your data."
+          }].map((step, index) => <ScrollReveal key={step.num} delay={index * 100}>
                 <div className="group flex gap-3 md:gap-5 items-start p-4 md:p-6 rounded-xl md:rounded-2xl glass-card glass-card-hover glow-hover transition-all duration-300">
                   <div className="flex-shrink-0 w-10 h-10 md:w-14 md:h-14 rounded-lg md:rounded-xl bg-gradient-primary flex items-center justify-center text-sm md:text-lg font-display font-semibold text-primary-foreground shadow-lg shadow-primary/20">
                     {step.num}
@@ -215,8 +184,7 @@ const Index = () => {
                     </p>
                   </div>
                 </div>
-              </ScrollReveal>
-            ))}
+              </ScrollReveal>)}
           </div>
         </div>
       </section>
@@ -266,22 +234,13 @@ const Index = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <Logo />
             <div className="flex items-center gap-8">
-              <a
-                href="#features"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-              >
+              <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
                 Features
               </a>
-              <a
-                href="#how-it-works"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-              >
+              <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
                 How It Works
               </a>
-              <Link
-                to="/demo"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-              >
+              <Link to="/demo" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
                 Demo
               </Link>
             </div>
@@ -291,8 +250,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;

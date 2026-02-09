@@ -169,7 +169,7 @@ const Index = () => {
           }, {
             num: "03",
             title: "Secure Retrieval",
-            desc: "When you need your files, both pieces are fetched and recombined client-side. Only your wallet can decrypt — no one else, not even BlockDrive, can access your data."
+            desc: "When you need your files, both pieces are fetched and recombined safely within the BlockDrive ecosystem. Only your wallet can decrypt — your data is never a complete file outside your private environment and no one else, not even BlockDrive, can access your data."
           }].map((step, index) => <ScrollReveal key={step.num} delay={index * 100}>
                 <div className="group flex gap-3 md:gap-5 items-start p-4 md:p-6 rounded-xl md:rounded-2xl glass-card glass-card-hover glow-hover transition-all duration-300">
                   <div className="flex-shrink-0 w-10 h-10 md:w-14 md:h-14 rounded-lg md:rounded-xl bg-gradient-primary flex items-center justify-center text-sm md:text-lg font-display font-semibold text-primary-foreground shadow-lg shadow-primary/20">

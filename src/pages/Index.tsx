@@ -152,7 +152,7 @@ const Index = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-semibold tracking-tight text-foreground mb-4 md:mb-6">
                 Three Steps to
                 <br />
-                <span className="text-gradient">Breach-Proof Storage</span>
+                <span className="text-gradient">Incorruptible Storage</span>
               </h2>
             </ScrollReveal>
           </div>

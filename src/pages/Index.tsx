@@ -165,7 +165,7 @@ const Index = () => {
           }, {
             num: "02",
             title: "Distributed Storage",
-            desc: "Encrypted data goes to enterprise-grade IPFS. The critical bytes are stored separately on Cloudflare R2, protected by zero-knowledge proofs and Solana-verified access controls."
+            desc: "99.9% of your encrypted data goes to enterprise-grade decentralized cloud storage. The critical missing bytes are stored separately on Cloudflare, protected by zero-knowledge proofs and Solana-verified access controls."
           }, {
             num: "03",
             title: "Secure Retrieval",

@@ -161,7 +161,7 @@ const Index = () => {
             {[{
             num: "01",
             title: "Encrypt & Split",
-            desc: "Your file is encrypted with AES-256-GCM using a key derived from your wallet. Critical bytes are extracted and stored separately — the main file becomes mathematically incomplete."
+            desc: "Your files are protected by military grade encryption using a key derived from your embedded wallet. Critical bytes are extracted and stored separately — the main file becomes mathematically incomplete and unreadable without those keys."
           }, {
             num: "02",
             title: "Distributed Storage",

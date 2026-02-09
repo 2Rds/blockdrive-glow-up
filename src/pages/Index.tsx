@@ -60,7 +60,7 @@ const Index = () => {
           <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed animate-fade-in" style={{
           animationDelay: '200ms'
         }}>
-            BlockDrive makes your files mathematically unreadable — even if our system is breached. True Privacy. True ownership. Zero trust required.
+            BlockDrive makes your files mathematically unreadable — even if encryption is broken or our system is breached. True security. True sovereignty. Zero trust required.
           </p>
 
           {/* Waitlist Form */}

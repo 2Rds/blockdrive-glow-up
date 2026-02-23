@@ -53,7 +53,7 @@ export const StepEncrypt = ({ file, onComplete, isComplete = false }: StepEncryp
       description={
         <>
           <p>
-            Your <strong className="text-primary">Crossmint wallet</strong> does more than
+            Your <strong className="text-primary">Dynamic wallet</strong> does more than
             authenticate — it generates your encryption keys. A unique AES-256 key is derived
             from your wallet's cryptographic signature.
           </p>

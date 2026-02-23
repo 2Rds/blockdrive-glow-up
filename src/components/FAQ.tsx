@@ -23,7 +23,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: "What happens if I lose access to my account?",
-    answer: "BlockDrive uses Crossmint's smart wallet infrastructure with built-in account recovery. You can recover your account through email, phone, or passkeys — no seed phrases to lose. Recovery methods are enforced onchain, so your data remains secure while still being recoverable.",
+    answer: "BlockDrive uses Dynamic's smart wallet infrastructure — backed by Fireblocks — with built-in account recovery. You can recover your account through email, phone, or passkeys — no seed phrases to lose. Recovery methods are enforced onchain, so your data remains secure while still being recoverable.",
   },
   {
     question: "Is my data really on the blockchain?",

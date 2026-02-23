@@ -14,7 +14,7 @@ export const StepWallet = ({ onComplete, walletAddress }: StepWalletProps) => {
       description={
         <>
           <p>
-            BlockDrive uses <strong className="text-primary">Crossmint</strong> — the enterprise leader in embedded wallets — to give you
+            BlockDrive uses <strong className="text-primary">Dynamic</strong> — backed by Fireblocks, the leader in enterprise wallet infrastructure — to give you
             a familiar sign-up experience with powerful Web3 security underneath.
           </p>
           <div className="space-y-3 pt-4">
@@ -27,7 +27,7 @@ export const StepWallet = ({ onComplete, walletAddress }: StepWalletProps) => {
             <div className="flex items-start gap-3">
               <KeyRound className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
               <p className="text-sm">
-                <strong className="text-foreground">No Seed Phrases:</strong> Crossmint's smart wallet handles key management invisibly — nothing to write down or lose
+                <strong className="text-foreground">No Seed Phrases:</strong> Dynamic's smart wallet handles key management invisibly — nothing to write down or lose
               </p>
             </div>
             <div className="flex items-start gap-3">
@@ -44,7 +44,7 @@ export const StepWallet = ({ onComplete, walletAddress }: StepWalletProps) => {
             </div>
           </div>
           <p className="text-xs text-muted-foreground/70 pt-4">
-            Powered by Crossmint's enterprise wallet infrastructure
+            Powered by Dynamic, a Fireblocks company
           </p>
         </>
       }
@@ -65,10 +65,10 @@ export const StepWallet = ({ onComplete, walletAddress }: StepWalletProps) => {
           address={walletAddress}
         />
 
-        {/* Crossmint badge */}
+        {/* Dynamic badge */}
         <div className="flex items-center justify-center gap-2 pt-2">
           <span className="text-xs text-muted-foreground/60">Wallets by</span>
-          <span className="text-xs font-medium text-muted-foreground">Crossmint</span>
+          <span className="text-xs font-medium text-muted-foreground">Dynamic</span>
         </div>
       </div>
     </DemoLayout>

@@ -140,7 +140,7 @@ const Index = () => {
             />
             <FeatureCard
               icon={Wallet}
-              title="Crossmint Embedded Wallet"
+              title="Dynamic Embedded Wallet"
               description="Sign in with email or phone — no extensions, seed phrases, or crypto knowledge needed. Web2 UX with Web3 security."
             />
             <FeatureCard

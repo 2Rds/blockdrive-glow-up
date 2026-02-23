@@ -15,7 +15,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: "How is this different from traditional encryption?",
-    answer: "Traditional encryption relies on keeping keys secret. If keys are compromised, all your data is exposed. With Programmed Incompleteness, even if encryption is somehow broken, attackers only get incomplete data that's useless without the separated critical bytes stored elsewhere.",
+    answer: "Traditional encryption relies on keeping keys secret. If keys are compromised, all your data is exposed. With BlockDrive, even if encryption is somehow broken or our system is breached, attackers only get incomplete data that's useless without the separated critical bytes stored elsewhere.",
   },
   {
     question: "Can BlockDrive access my files?",

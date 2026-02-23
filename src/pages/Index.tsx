@@ -8,10 +8,8 @@ import { FAQ } from "@/components/FAQ";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal, ScrollRevealGrid } from "@/components/ScrollReveal";
 import { Shield, Zap, Lock, Globe, KeyRound, Wallet, FileKey, Unplug, Play, ArrowRight } from "lucide-react";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen relative">
+  return <div className="min-h-screen relative">
       <AnimatedBackground />
 
       {/* Header */}
@@ -19,16 +17,10 @@ const Index = () => {
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <Logo />
           <nav className="hidden md:flex items-center gap-8">
-            <a
-              href="#features"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-            >
+            <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
               Features
             </a>
-            <a
-              href="#how-it-works"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-            >
+            <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
               How It Works
             </a>
             <Link to="/demo">
@@ -56,25 +48,32 @@ const Index = () => {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-semibold tracking-tight text-foreground mb-6 md:mb-8 animate-fade-in leading-[1.1]" style={{ animationDelay: '100ms' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-display font-semibold tracking-tight text-foreground mb-6 md:mb-8 animate-fade-in leading-[1.1]" style={{
+          animationDelay: '100ms'
+        }}>
             Cloud Storage for
             <br />
             <span className="text-gradient">the New Internet</span>
           </h1>
 
           {/* Subheadline */}
-          <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed animate-fade-in" style={{ animationDelay: '200ms' }}>
-            BlockDrive uses Programmed Incompleteness to make your files mathematically
-            unreadable — even if breached. True ownership. Zero trust required.
+          <p className="text-base md:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed animate-fade-in" style={{
+          animationDelay: '200ms'
+        }}>
+            BlockDrive makes your files mathematically unreadable — even if encryption is broken or our system is breached. True security. True sovereignty. Zero trust.
           </p>
 
           {/* Waitlist Form */}
-          <div className="flex justify-center mb-8 animate-fade-in" style={{ animationDelay: '300ms' }}>
+          <div className="flex justify-center mb-8 animate-fade-in" style={{
+          animationDelay: '300ms'
+        }}>
             <WaitlistForm />
           </div>
 
           {/* Trust badges */}
-          <div className="flex flex-wrap justify-center gap-4 pt-4 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: '400ms' }}>
+          <div className="flex flex-wrap justify-center gap-4 pt-4 text-sm text-muted-foreground animate-fade-in" style={{
+          animationDelay: '400ms'
+        }}>
             <div className="flex items-center gap-2">
               <Shield className="h-4 w-4 text-primary" />
               <span>Privacy-First Design</span>
@@ -90,11 +89,10 @@ const Index = () => {
           </div>
 
           {/* Demo link */}
-          <div className="animate-fade-in pt-8" style={{ animationDelay: '500ms' }}>
-            <Link
-              to="/demo"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-            >
+          <div className="animate-fade-in pt-8" style={{
+          animationDelay: '500ms'
+        }}>
+            <Link to="/demo" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
               <Play className="h-4 w-4" />
               Watch how it works
             </Link>
@@ -127,7 +125,7 @@ const Index = () => {
             </ScrollReveal>
             <ScrollReveal delay={200}>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Every feature designed for true data ownership and uncompromising privacy.
+                Every feature designed for true data ownership and uncompromising security.
               </p>
             </ScrollReveal>
           </div>
@@ -178,30 +176,25 @@ const Index = () => {
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-semibold tracking-tight text-foreground mb-4 md:mb-6">
                 Three Steps to
                 <br />
-                <span className="text-gradient">Breach-Proof Storage</span>
+                <span className="text-gradient">Incorruptible Storage</span>
               </h2>
             </ScrollReveal>
           </div>
 
           <div className="space-y-3 md:space-y-6">
-            {[
-              {
-                num: "01",
-                title: "Encrypt & Split",
-                desc: "Your file is encrypted with AES-256-GCM using a key derived from your wallet. Critical bytes are extracted and stored separately — the main file becomes mathematically incomplete.",
-              },
-              {
-                num: "02",
-                title: "Distributed Storage",
-                desc: "Encrypted data goes to enterprise-grade IPFS. The critical bytes are stored separately on Cloudflare R2, protected by zero-knowledge proofs and Solana-verified access controls.",
-              },
-              {
-                num: "03",
-                title: "Secure Retrieval",
-                desc: "When you need your files, both pieces are fetched and recombined client-side. Only your wallet can decrypt — no one else, not even BlockDrive, can access your data.",
-              },
-            ].map((step, index) => (
-              <ScrollReveal key={step.num} delay={index * 100}>
+            {[{
+            num: "01",
+            title: "Encrypt & Split",
+            desc: "Your files are protected by military grade encryption using a key derived from your embedded wallet. Critical bytes are extracted and stored separately — the main file becomes mathematically incomplete and unreadable without those keys."
+          }, {
+            num: "02",
+            title: "Distributed Storage",
+            desc: "99.9% of your encrypted data goes to enterprise-grade decentralized cloud storage. The critical missing bytes are stored separately on Cloudflare, protected by zero-knowledge proofs and Solana-verified access controls."
+          }, {
+            num: "03",
+            title: "Secure Retrieval",
+            desc: "When you need your files, both pieces are fetched and recombined safely within our ecosystem. Only your wallet can decrypt — your data is never a complete file outside your private environment and no one else, not even BlockDrive, can access your data."
+          }].map((step, index) => <ScrollReveal key={step.num} delay={index * 100}>
                 <div className="group flex gap-3 md:gap-5 items-start p-4 md:p-6 rounded-xl md:rounded-2xl glass-card glass-card-hover glow-hover transition-all duration-300">
                   <div className="flex-shrink-0 w-10 h-10 md:w-14 md:h-14 rounded-lg md:rounded-xl bg-gradient-primary flex items-center justify-center text-sm md:text-lg font-display font-semibold text-primary-foreground shadow-lg shadow-primary/20">
                     {step.num}
@@ -215,8 +208,7 @@ const Index = () => {
                     </p>
                   </div>
                 </div>
-              </ScrollReveal>
-            ))}
+              </ScrollReveal>)}
           </div>
         </div>
       </section>
@@ -239,8 +231,8 @@ const Index = () => {
                   <span className="text-gradient">of Your Data?</span>
                 </h2>
                 <p className="text-base md:text-lg text-muted-foreground mb-6 md:mb-10 max-w-xl mx-auto">
-                  Join the waitlist for early access to storage that's mathematically
-                  breach-proof by design.
+                  Join the waitlist for early access to cloud storage that's mathematically
+                  incorruptible by design.
                 </p>
 
                 <div className="flex justify-center mb-8">
@@ -266,22 +258,13 @@ const Index = () => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <Logo />
             <div className="flex items-center gap-8">
-              <a
-                href="#features"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-              >
+              <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
                 Features
               </a>
-              <a
-                href="#how-it-works"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-              >
+              <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
                 How It Works
               </a>
-              <Link
-                to="/demo"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
-              >
+              <Link to="/demo" className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300">
                 Demo
               </Link>
             </div>
@@ -291,8 +274,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;

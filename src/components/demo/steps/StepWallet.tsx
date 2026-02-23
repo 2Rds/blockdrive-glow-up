@@ -27,13 +27,13 @@ export const StepWallet = ({ onComplete, walletAddress }: StepWalletProps) => {
             <div className="flex items-start gap-3">
               <KeyRound className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
               <p className="text-sm">
-                <strong className="text-foreground">No Seed Phrases:</strong> Dynamic's smart wallet handles key management invisibly — nothing to write down or lose
+                <strong className="text-foreground">No Seed Phrases:</strong> Dynamic's embedded wallet handles key management invisibly — nothing to write down or lose
               </p>
             </div>
             <div className="flex items-start gap-3">
               <ShieldCheck className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
               <p className="text-sm">
-                <strong className="text-foreground">Built-In Recovery:</strong> Lost access? Recover via email, phone, or passkey — all enforced onchain
+                <strong className="text-foreground">Built-In Recovery:</strong> Lost access? Recover via email, phone, or passkey — secured by MPC key splitting
               </p>
             </div>
             <div className="flex items-start gap-3">
